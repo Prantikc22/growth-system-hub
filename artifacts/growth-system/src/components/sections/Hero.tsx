@@ -2,22 +2,23 @@ import { smoothScrollTo } from "@/lib/smooth-scroll";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden min-h-screen flex flex-col">
+    <section className="relative overflow-hidden min-h-screen flex flex-col bg-[#050709]">
       {/* ── Background photo ─────────────────────────────────────────────── */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/hero-bg.jpg')" }}
       />
-      {/* gradient overlay — darker on left for text, subtle on right */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#050709]/92 via-[#050709]/65 to-[#050709]/30" />
-      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#050709]/70 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#050709] to-transparent" />
+      {/* Heavy left fade so text stays readable; subtle elsewhere */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#050709]/95 via-[#050709]/60 to-[#050709]/15" />
+      {/* Soft top fade */}
+      <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-[#050709]/75 to-transparent" />
+      {/* Bottom fade into stats bar – NO border line */}
+      <div className="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-[#050709] to-transparent" />
 
-      {/* ── Main content ─────────────────────────────────────────────────── */}
-      <div className="container-wide flex-1 grid lg:grid-cols-2 gap-6 xl:gap-8 items-center pt-28 md:pt-32 pb-16 relative z-10">
-
-        {/* ── Left — text ── */}
-        <div>
+      {/* ── Text — left half ─────────────────────────────────────────────── */}
+      <div className="container-wide flex-1 flex items-center relative z-10 pt-28 md:pt-32 pb-16">
+        <div className="max-w-[52%]">
+          {/* Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 mb-7">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-white/70 text-xs font-medium tracking-wide">
@@ -25,6 +26,7 @@ export function Hero() {
             </span>
           </div>
 
+          {/* Headline */}
           <h1 className="text-[clamp(2.6rem,4.2vw,4.8rem)] font-black leading-[1.05] tracking-tight text-white mb-6">
             Growth systems<br />
             that{" "}
@@ -40,11 +42,13 @@ export function Hero() {
             </span>
           </h1>
 
-          <p className="text-white/50 text-base md:text-lg leading-relaxed mb-9 max-w-sm">
+          {/* Subtitle */}
+          <p className="text-white/50 text-base md:text-lg leading-relaxed mb-9 max-w-xs">
             We scale modern brands through ads, content, funnels and
             retention systems.
           </p>
 
+          {/* CTAs */}
           <div className="flex flex-wrap gap-3 mb-10">
             <button
               onClick={() => smoothScrollTo("#configurator")}
@@ -60,6 +64,7 @@ export function Hero() {
             </button>
           </div>
 
+          {/* Trust row */}
           <div className="flex items-center gap-3">
             <div className="flex -space-x-2">
               {(["#7C3AED", "#0F766E", "#A8336E"] as const).map((c, i) => (
@@ -85,119 +90,35 @@ export function Hero() {
           </div>
         </div>
 
-        {/* ── Right — dashboard panel + floating cards ── */}
-        <div className="relative hidden lg:block" style={{ height: "520px" }}>
-          {/* Dashboard panel */}
-          <div
-            className="absolute rounded-2xl border border-white/10 bg-[#0C0E16]/95 shadow-[0_24px_64px_rgba(0,0,0,0.75)] overflow-hidden"
-            style={{ top: "4%", left: "0%", right: "18%", bottom: "4%" }}
-          >
-            {/* Titlebar */}
-            <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-white/8 bg-[#0A0C13]">
-              <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
-              <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
-              <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
-              <div className="flex-1 mx-3 rounded bg-white/5 h-3.5 max-w-[150px]" />
-            </div>
-
-            {/* Body */}
-            <div className="p-4 overflow-hidden h-full">
-              {/* Top bar */}
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 rounded bg-indigo-500/20 grid place-items-center">
-                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#818CF8" strokeWidth="2.5">
-                      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-                    </svg>
-                  </div>
-                  <span className="text-white/80 text-xs font-semibold tracking-wide">Overview</span>
-                </div>
-                <span className="text-white/25 text-[9px]">Apr 1 – Apr 30</span>
-              </div>
-
-              {/* Key metrics row */}
-              <div className="grid grid-cols-3 gap-3 mb-4">
-                <div className="col-span-2 rounded-xl bg-white/[0.04] border border-white/5 p-3">
-                  <div className="text-white/30 text-[8px] uppercase tracking-widest mb-1">Total Revenue</div>
-                  <div className="text-white font-extrabold text-lg leading-tight tracking-tight">₹3,21,45,231</div>
-                  <div className="text-emerald-400 text-[9px] font-bold mt-0.5">+214%</div>
-                </div>
-                <div className="rounded-xl bg-indigo-600/20 border border-indigo-500/25 p-3">
-                  <div className="text-indigo-300/60 text-[8px] uppercase tracking-widest mb-1">ROAS</div>
-                  <div className="text-white font-extrabold text-xl leading-tight">8.1x</div>
-                  <div className="text-indigo-300/50 text-[9px] mt-0.5">vs Mar</div>
-                </div>
-              </div>
-
-              {/* Chart */}
-              <div className="rounded-xl bg-white/[0.03] border border-white/5 p-3 mb-4">
-                <svg viewBox="0 0 280 50" className="w-full" preserveAspectRatio="none">
-                  <defs>
-                    <linearGradient id="hg" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#6366F1" stopOpacity="0.4" />
-                      <stop offset="100%" stopColor="#6366F1" stopOpacity="0" />
-                    </linearGradient>
-                  </defs>
-                  <path
-                    d="M0,44 C20,40 38,36 58,30 C76,24 92,28 112,20 C130,14 148,10 168,7 C186,4 206,5 228,3 C248,1 264,1 280,0"
-                    fill="none" stroke="#6366F1" strokeWidth="2"
-                  />
-                  <path
-                    d="M0,44 C20,40 38,36 58,30 C76,24 92,28 112,20 C130,14 148,10 168,7 C186,4 206,5 228,3 C248,1 264,1 280,0 L280,50 L0,50Z"
-                    fill="url(#hg)"
-                  />
-                  <circle cx="280" cy="0" r="3" fill="#6366F1" />
-                </svg>
-              </div>
-
-              {/* Bottom row */}
-              <div className="grid grid-cols-2 gap-3 mb-3">
-                <div>
-                  <div className="text-white/30 text-[8px] uppercase tracking-widest mb-0.5">Purchases</div>
-                  <div className="text-white font-bold text-sm">14,782</div>
-                  <div className="text-white/25 text-[8px]">vs Mar 1 – Mar 31</div>
-                </div>
-              </div>
-
-              {/* Campaigns */}
-              <div className="border-t border-white/6 pt-3">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-white/30 text-[8px] uppercase tracking-widest">Top Campaigns</span>
-                  <span className="text-indigo-400 text-[8px]">View all</span>
-                </div>
-                {[
-                  { name: "Prospecting – Advantage+", roas: "8.7x", amt: "₹1,12,23,893" },
-                  { name: "Retargeting – Conversions", roas: "7.6x", amt: "₹98,71,654" },
-                  { name: "Lookalike – Purchases",    roas: "6.3x", amt: "₹76,49,231" },
-                ].map((r) => (
-                  <div key={r.name} className="flex items-center justify-between py-1 border-b border-white/5 last:border-0">
-                    <span className="text-white/40 text-[9px] truncate max-w-[55%]">{r.name}</span>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <span className="text-white/50 text-[9px] font-mono">{r.amt}</span>
-                      <span className="text-emerald-400 text-[9px] font-bold">{r.roas}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Floating cards — stacked on the right edge */}
-          <FloatCard style={{ top: "2%", right: "0" }}
-            color="#818CF8" icon="roas" metric="8.1x" label="ROAS" delta="↑ 162%" />
-          <FloatCard style={{ top: "35%", right: "0", transform: "translateY(-50%)" }}
-            color="#06B6D4" icon="cart" metric="₹3.2Cr" label="Revenue Generated in 90 Days" delta="↑ 214%" />
-          <FloatCard style={{ bottom: "4%", right: "0" }}
-            color="#A855F7" icon="growth" metric="+214%" label="Organic Growth in 120 Days" delta="↑ 214%" />
-
-          {/* Brands card — bottom left, peeking from behind the dashboard */}
-          <FloatCard style={{ bottom: "12%", left: "-4%" }}
-            color="#F59E0B" icon="brands" metric="12+" label="Brands Scaled Past ₹1Cr" delta="↑ 100%" />
-        </div>
+        {/* ── Floating cards — right side, over the laptop screen ── */}
+        {/* ROAS — top-right above the screen */}
+        <FloatCard
+          className="absolute top-[12%] right-[3%]"
+          color="#818CF8" icon="roas"
+          metric="8.1x" label="ROAS" delta="↑ 162%"
+        />
+        {/* Revenue — right of screen, mid */}
+        <FloatCard
+          className="absolute top-[38%] right-[1%] -translate-y-1/2"
+          color="#06B6D4" icon="cart"
+          metric="₹3.2Cr" label="Revenue in 90 Days" delta="↑ 214%"
+        />
+        {/* Organic Growth — bottom right */}
+        <FloatCard
+          className="absolute bottom-[20%] right-[2%]"
+          color="#A855F7" icon="growth"
+          metric="+214%" label="Organic Growth in 120 Days" delta="↑ 214%"
+        />
+        {/* Brands — bottom, left of the laptop base */}
+        <FloatCard
+          className="absolute bottom-[32%] left-[50%]"
+          color="#F59E0B" icon="brands"
+          metric="12+" label="Brands Scaled Past ₹1Cr" delta="↑ 100%"
+        />
       </div>
 
-      {/* ── Stats bar ────────────────────────────────────────────────────── */}
-      <div className="relative z-10 border-t border-white/8">
+      {/* ── Stats bar — NO top border ────────────────────────────────────── */}
+      <div className="relative z-10">
         <div className="container-wide py-6 grid grid-cols-2 md:grid-cols-4 gap-5">
           {STATS.map((s) => (
             <div key={s.label} className="flex items-center gap-3">
@@ -220,7 +141,7 @@ export function Hero() {
   );
 }
 
-/* ── Stats ───────────────────────────────────────────────────────────────── */
+/* ── Stats config ─────────────────────────────────────────────────────────── */
 const STATS = [
   {
     Icon: () => (
@@ -266,14 +187,14 @@ const STATS = [
 type IconName = "roas" | "cart" | "growth" | "brands";
 
 function FloatCard({
-  style,
+  className,
   color,
   icon,
   metric,
   label,
   delta,
 }: {
-  style: React.CSSProperties;
+  className: string;
   color: string;
   icon: IconName;
   metric: string;
@@ -309,13 +230,10 @@ function FloatCard({
   };
 
   return (
-    <div
-      className="absolute rounded-xl bg-[#0A0C15]/90 border border-white/12 backdrop-blur-md p-3 w-[130px] shadow-[0_8px_32px_rgba(0,0,0,0.55)]"
-      style={style}
-    >
+    <div className={`${className} rounded-xl bg-[#0A0C15]/90 border border-white/12 backdrop-blur-md p-3 w-[132px] shadow-[0_8px_32px_rgba(0,0,0,0.55)]`}>
       <div className="flex items-center gap-1.5 mb-1.5 text-white/35 text-[9px]">
         {icons[icon]}
-        <span className="truncate leading-tight">{label}</span>
+        <span className="leading-tight">{label}</span>
       </div>
       <div className="text-white text-xl font-extrabold leading-tight tracking-tight">
         {metric}
