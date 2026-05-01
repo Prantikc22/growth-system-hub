@@ -15,6 +15,7 @@ const links = [
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -22,15 +23,30 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const isHome = pathname === "/";
+  const dark = isHome && !scrolled;
+
   return (
-    <header className={cn(
-      "fixed top-0 inset-x-0 z-40 transition-all duration-300",
-      scrolled ? "bg-background/80 backdrop-blur-xl border-b border-border" : "bg-transparent"
-    )}>
+    <header
+      className={cn(
+        "fixed top-0 inset-x-0 z-40 transition-all duration-300",
+        scrolled
+          ? "bg-background/80 backdrop-blur-xl border-b border-border"
+          : isHome
+          ? "bg-transparent"
+          : "bg-transparent"
+      )}
+    >
       <div className="container-wide flex h-16 md:h-20 items-center justify-between">
-        <Link to="/" className="reveal-fade flex items-center gap-2 font-display font-extrabold text-xl tracking-tight" style={{ animationDelay: "100ms" }}>
-          <LogoMark />
-          <span>Marqd</span>
+        <Link
+          to="/"
+          className="reveal-fade flex items-center gap-2 font-display font-extrabold text-xl tracking-tight"
+          style={{ animationDelay: "100ms" }}
+        >
+          <LogoMark dark={dark} />
+          <span className={cn("transition-colors duration-300", dark ? "text-white" : "text-foreground")}>
+            Marqd
+          </span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
@@ -39,8 +55,14 @@ export function Nav() {
               key={l.href}
               to={l.href}
               className={cn(
-                "reveal-up px-4 py-2 text-sm font-medium rounded-full transition-colors",
-                pathname === l.href ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                "reveal-up px-4 py-2 text-sm font-medium rounded-full transition-colors duration-300",
+                dark
+                  ? pathname === l.href
+                    ? "text-white"
+                    : "text-white/65 hover:text-white"
+                  : pathname === l.href
+                  ? "text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
               )}
               style={{ animationDelay: `${200 + i * 60}ms` }}
             >
@@ -55,7 +77,12 @@ export function Nav() {
               if (pathname === "/") smoothScrollTo("#configurator");
               else window.location.href = "/#configurator";
             }}
-            className="rounded-full h-10 md:h-11 px-5 md:px-6 bg-ink text-ink-foreground hover:bg-ink/90 font-semibold"
+            className={cn(
+              "rounded-full h-10 md:h-11 px-5 md:px-6 font-semibold transition-all duration-300",
+              dark
+                ? "bg-white text-[#080B12] hover:bg-white/90"
+                : "bg-ink text-ink-foreground hover:bg-ink/90"
+            )}
           >
             Get a quote →
           </Button>
@@ -65,11 +92,22 @@ export function Nav() {
   );
 }
 
-function LogoMark() {
+function LogoMark({ dark }: { dark: boolean }) {
   return (
-    <span className="grid place-items-center w-8 h-8 rounded-lg bg-ink text-ink-foreground">
+    <span
+      className={cn(
+        "grid place-items-center w-8 h-8 rounded-lg transition-all duration-300",
+        dark ? "bg-white text-[#080B12]" : "bg-ink text-ink-foreground"
+      )}
+    >
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-        <path d="M2 11L6 5L9 8L12 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M2 11L6 5L9 8L12 3"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     </span>
   );
