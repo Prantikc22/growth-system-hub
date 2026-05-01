@@ -13,6 +13,7 @@ import { appendToSheet } from "@/lib/sheets";
 
 const schema = z.object({
   name: z.string().trim().min(1, "Required").max(100),
+  city: z.string().trim().max(100).optional(),
   email: z.string().trim().email("Invalid email").max(255),
   phone: z.string().trim().min(6, "Invalid phone").max(20),
   message: z.string().trim().min(1, "Required").max(1000),
@@ -40,7 +41,7 @@ export default function Contact() {
           Name: parsed.data.name,
           Email: parsed.data.email,
           Phone: parsed.data.phone,
-          City: "",
+          City: parsed.data.city ?? "",
           Services: "",
           "Monthly Estimate": "",
           "One-time": "",
@@ -87,9 +88,12 @@ export default function Contact() {
             <form onSubmit={onSubmit} className="card-glass p-6 md:p-10 space-y-5 has-system-cursor">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div><Label htmlFor="name">Name</Label><Input id="name" name="name" className="mt-2" placeholder="Anaya R." /></div>
-                <div><Label htmlFor="email">Email</Label><Input id="email" name="email" type="email" className="mt-2" placeholder="you@brand.com" /></div>
+                <div><Label htmlFor="city">City</Label><Input id="city" name="city" className="mt-2" placeholder="Mumbai" /></div>
               </div>
-              <div><Label htmlFor="phone">WhatsApp / Phone</Label><Input id="phone" name="phone" type="tel" className="mt-2" placeholder="+91 99999 99999" /></div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div><Label htmlFor="email">Email</Label><Input id="email" name="email" type="email" className="mt-2" placeholder="you@brand.com" /></div>
+                <div><Label htmlFor="phone">WhatsApp / Phone</Label><Input id="phone" name="phone" type="tel" className="mt-2" placeholder="+91 99999 99999" /></div>
+              </div>
               <div><Label htmlFor="message">What are you building?</Label><Textarea id="message" name="message" rows={5} className="mt-2" placeholder="A few lines about your brand and what you need." /></div>
               <Button type="submit" disabled={busy} className="rounded-full h-12 px-7 bg-ink text-ink-foreground hover:bg-ink/90 font-semibold">{busy ? "Sending…" : "Send message →"}</Button>
             </form>

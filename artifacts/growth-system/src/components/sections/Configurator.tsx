@@ -27,7 +27,7 @@ export function Configurator() {
   const [step, setStep] = useState(1);
   const [state, setState] = useState<ConfiguratorState>({ services: [] });
   const [compare, setCompare] = useState(false);
-  const [contact, setContact] = useState({ email: "", phone: "" });
+  const [contact, setContact] = useState({ name: "", city: "", email: "", phone: "" });
   const est = useMemo(() => estimate(state), [state]);
 
   // ── helpers ─────────────────────────────────────────────
@@ -59,21 +59,22 @@ export function Configurator() {
     const servicesLabel = state.services.join(", ");
     const monthly = formatINR(est.monthly);
     const onetime = est.onetime > 0 ? ` + ${formatINR(est.onetime)} one-time` : "";
+    const displayName = contact.name.trim() || contact.email.split("@")[0];
     try {
       await Promise.all([
         sendConfirmationEmail({
           toEmail: contact.email,
-          toName: contact.email.split("@")[0],
+          toName: displayName,
           subject: "Your Remarqd quote is with us",
-          bodyHtml: quoteConfirmationHtml(contact.email.split("@")[0], servicesLabel || "Custom package"),
+          bodyHtml: quoteConfirmationHtml(displayName, servicesLabel || "Custom package"),
         }),
         appendToSheet({
           Timestamp: new Date().toISOString(),
           Type: "Quote",
-          Name: "",
+          Name: contact.name,
           Email: contact.email,
           Phone: contact.phone,
-          City: "",
+          City: contact.city,
           Services: servicesLabel,
           "Monthly Estimate": monthly,
           "One-time": onetime,
@@ -358,7 +359,17 @@ export function Configurator() {
             {step === 3 && (
               <div className="space-y-6">
                 <h3 className="text-xl md:text-2xl font-bold">Almost there</h3>
-                <p className="text-muted-foreground">Drop your contact so we can save your plan and reach out if you'd like.</p>
+                <p className="text-muted-foreground">Drop your details so we can send your quote and reach out.</p>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="cf-name" className="mb-2 block text-sm">Your name</Label>
+                    <Input id="cf-name" type="text" placeholder="Anaya R." value={contact.name} onChange={(e) => setContact({ ...contact, name: e.target.value })} />
+                  </div>
+                  <div>
+                    <Label htmlFor="cf-city" className="mb-2 block text-sm">City</Label>
+                    <Input id="cf-city" type="text" placeholder="Mumbai" value={contact.city} onChange={(e) => setContact({ ...contact, city: e.target.value })} />
+                  </div>
+                </div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="cf-email" className="mb-2 block text-sm">Email</Label>

@@ -30,6 +30,7 @@ router.post("/send-email", async (req, res) => {
       },
       body: JSON.stringify({
         from: "Remarqd <quote@remarqd.com>",
+        reply_to: "hello@remarqd.com",
         to: [to],
         bcc: bcc ? [bcc] : ["quote@remarqd.com"],
         subject,
