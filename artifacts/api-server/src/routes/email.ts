@@ -3,7 +3,8 @@ import { Router } from "express";
 const router = Router();
 
 router.post("/send-email", async (req, res) => {
-  const RESEND_API_KEY = process.env.VITE_RESEND_API_KEY;
+  const RESEND_API_KEY =
+    process.env.RESEND_API_KEY || process.env.VITE_RESEND_API_KEY;
   if (!RESEND_API_KEY) {
     res.status(500).json({ error: "RESEND_API_KEY not configured" });
     return;
