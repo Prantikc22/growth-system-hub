@@ -28,8 +28,8 @@ export function Hero() {
 
           {/* Headline */}
           <h1 className="text-[clamp(2.6rem,4.2vw,4.8rem)] font-black leading-[1.05] tracking-tight text-white mb-6">
-            Growth systems<br />
-            that{" "}
+            More visibility.<br />
+            More{" "}
             <span
               style={{
                 background: "linear-gradient(90deg, #A855F7 0%, #06B6D4 100%)",
@@ -38,14 +38,16 @@ export function Hero() {
                 backgroundClip: "text",
               }}
             >
-              print revenue.
+              revenue.
             </span>
+            <br />
+            Less chaos.
           </h1>
 
           {/* Subtitle */}
-          <p className="text-white/50 text-base md:text-lg leading-relaxed mb-9 max-w-xs">
-            We scale modern brands through ads, content, funnels and
-            retention systems.
+          <p className="text-white/50 text-base md:text-lg leading-relaxed mb-9 max-w-sm">
+            Everything your brand needs to grow — in one place, at transparent
+            pricing, with a team that actually shows up.
           </p>
 
           {/* CTAs */}
