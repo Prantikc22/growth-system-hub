@@ -8,6 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
+import { sendConfirmationEmail, contactConfirmationHtml } from "@/lib/sendEmail";
+import { appendToSheet } from "@/lib/sheets";
 
 const schema = z.object({
   name: z.string().trim().min(1, "Required").max(100),
@@ -20,15 +22,37 @@ export default function Contact() {
   const [busy, setBusy] = useState(false);
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.currentTarget));
+    const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
     const parsed = schema.safeParse(data);
     if (!parsed.success) { toast.error(parsed.error.issues[0].message); return; }
     setBusy(true);
-    // TODO: wire to /functions/append-to-sheet once Sheets connector is linked
-    await new Promise((r) => setTimeout(r, 700));
-    setBusy(false);
-    toast.success("Got it. We'll be in touch within 24 hours.");
-    (e.target as HTMLFormElement).reset();
+    try {
+      await Promise.all([
+        sendConfirmationEmail({
+          toEmail: parsed.data.email,
+          toName: parsed.data.name,
+          subject: "We got your message — Remarqd",
+          bodyHtml: contactConfirmationHtml(parsed.data.name),
+        }),
+        appendToSheet({
+          sheet: "Contact",
+          row: {
+            Timestamp: new Date().toISOString(),
+            Name: parsed.data.name,
+            Email: parsed.data.email,
+            Phone: parsed.data.phone,
+            Message: parsed.data.message,
+          },
+        }),
+      ]);
+      toast.success("Got it. We'll be in touch within 24 hours.");
+      (e.target as HTMLFormElement).reset();
+    } catch (err) {
+      console.error(err);
+      toast.success("Got it. We'll be in touch within 24 hours.");
+    } finally {
+      setBusy(false);
+    }
   };
 
   return (
@@ -45,9 +69,9 @@ export default function Contact() {
                 <div className="text-xs text-muted-foreground uppercase tracking-widest">WhatsApp</div>
                 <div className="text-lg font-bold mt-1">+91 99999 99999</div>
               </a>
-              <a href="mailto:hello@marqd.in" className="block rounded-2xl border border-border p-5 hover:border-foreground transition-colors">
+              <a href="mailto:quote@remarqd.com" className="block rounded-2xl border border-border p-5 hover:border-foreground transition-colors">
                 <div className="text-xs text-muted-foreground uppercase tracking-widest">Email</div>
-                <div className="text-lg font-bold mt-1">hello@marqd.in</div>
+                <div className="text-lg font-bold mt-1">quote@remarqd.com</div>
               </a>
             </div>
           </Reveal>

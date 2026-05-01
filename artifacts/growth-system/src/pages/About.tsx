@@ -15,7 +15,7 @@ export default function About() {
             <h1 className="heading-display">We built the system we wished existed.</h1>
           </Reveal>
           <Reveal variant="up" delay={120} className="lg:col-span-5 text-lg text-muted-foreground">
-            <p>Marqd started when our founder watched four agencies fail one brand. Each blamed the next. Nobody owned the funnel. We built a single team that does — under one roof, one contract, one weekly review. Today we run growth for 120+ brands across India and beyond.</p>
+            <p>Remarqd started when our founder watched four agencies fail one brand. Each blamed the next. Nobody owned the funnel. We built a single team that does — under one roof, one contract, one weekly review. Today we run growth for 120+ brands across India and beyond.</p>
           </Reveal>
         </section>
         <section className="container-wide grid md:grid-cols-3 gap-6 mb-20">

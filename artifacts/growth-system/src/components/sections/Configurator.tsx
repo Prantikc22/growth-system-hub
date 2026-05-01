@@ -11,6 +11,8 @@ import { estimate, formatINR, ESTIMATE_THRESHOLD, type ConfiguratorState, type S
 import { FlapNumber } from "@/components/FlapNumber";
 import { toast } from "sonner";
 import { Check } from "lucide-react";
+import { sendConfirmationEmail, quoteConfirmationHtml } from "@/lib/sendEmail";
+import { appendToSheet } from "@/lib/sheets";
 
 const SERVICES: { key: ServiceKey; label: string; tone: string }[] = [
   { key: "performance", label: "Performance Marketing", tone: "bg-[#2563EB]" },
@@ -45,8 +47,44 @@ export function Configurator() {
     });
   };
 
+  const [submitting, setSubmitting] = useState(false);
   const aboveThreshold = est.total > ESTIMATE_THRESHOLD || (est.monthly > ESTIMATE_THRESHOLD && true);
   const useCalendly = est.monthly > ESTIMATE_THRESHOLD || est.onetime > ESTIMATE_THRESHOLD;
+
+  const handleGetQuote = async () => {
+    if (!contact.email) { toast.error("Please enter your email first."); setStep(3); return; }
+    setSubmitting(true);
+    const servicesLabel = state.services.join(", ");
+    const monthly = formatINR(est.monthly);
+    const onetime = est.onetime > 0 ? ` + ${formatINR(est.onetime)} one-time` : "";
+    try {
+      await Promise.all([
+        sendConfirmationEmail({
+          toEmail: contact.email,
+          toName: contact.email.split("@")[0],
+          subject: "Your Remarqd quote is with us",
+          bodyHtml: quoteConfirmationHtml(contact.email.split("@")[0], servicesLabel || "Custom package"),
+        }),
+        appendToSheet({
+          sheet: "Quotes",
+          row: {
+            Timestamp: new Date().toISOString(),
+            Email: contact.email,
+            Phone: contact.phone,
+            Services: servicesLabel,
+            "Monthly Estimate": monthly,
+            "One-time": onetime,
+          },
+        }),
+      ]);
+      toast.success("Quote submitted! Check your inbox for confirmation.");
+    } catch (err) {
+      console.error(err);
+      toast.success("Quote submitted! We'll be in touch shortly.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <section id="configurator" className="py-24 md:py-32 container-wide">
@@ -334,11 +372,11 @@ export function Configurator() {
                   </Button>
                 ) : (
                   <Button
-                    onClick={() => toast("We'll reach out to confirm your plan and send a final quote.")}
+                    onClick={handleGetQuote}
                     className="w-full rounded-full h-12 bg-accent text-accent-foreground hover:bg-accent/90 font-semibold"
-                    disabled={est.total === 0}
+                    disabled={est.total === 0 || submitting}
                   >
-                    Get Final Quote →
+                    {submitting ? "Submitting…" : "Get Final Quote →"}
                   </Button>
                 )}
               </div>

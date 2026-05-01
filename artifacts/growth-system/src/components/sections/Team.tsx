@@ -21,7 +21,7 @@ export function Team() {
           <div>
             <p className="text-xs uppercase tracking-widest text-white/30 mb-3">Founder & Owner</p>
             <h3 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">Reanka Chatterjee</h3>
-            <p className="mt-2 text-white/50 text-sm max-w-md">Brand strategist and growth architect. Built Marqd to give ambitious D2C and service brands a performance-led growth system without the agency bloat.</p>
+            <p className="mt-2 text-white/50 text-sm max-w-md">Brand strategist and growth architect. Built Remarqd to give ambitious D2C and service brands a performance-led growth system without the agency bloat.</p>
           </div>
           <div className="shrink-0">
             <div className="h-px w-24 md:w-32 rounded-full bg-primary" />

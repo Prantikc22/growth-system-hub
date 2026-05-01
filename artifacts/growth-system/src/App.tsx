@@ -1,12 +1,18 @@
 import { useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { MagneticCursor } from "@/components/MagneticCursor";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { bindAnchorSmoothScroll } from "@/lib/smooth-scroll";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" }); }, [pathname]);
+  return null;
+}
 import Index from "./pages/Index.tsx";
 import Work from "./pages/Work.tsx";
 import WorkDetail from "./pages/WorkDetail.tsx";
@@ -28,6 +34,7 @@ const App = () => {
         <ScrollProgress />
         <MagneticCursor />
         <BrowserRouter>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/work" element={<Work />} />

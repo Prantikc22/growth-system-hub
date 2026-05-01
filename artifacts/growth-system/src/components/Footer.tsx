@@ -51,7 +51,7 @@ export function Footer() {
                 className="text-[clamp(4rem,14vw,12rem)] font-black leading-[0.88] tracking-tight text-white select-none"
                 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
-                Marqd
+                Remarqd
               </h2>
             </div>
 
@@ -73,10 +73,10 @@ export function Footer() {
                 </SocialIcon>
               </div>
               <a
-                href="mailto:hello@marqd.in"
+                href="mailto:quote@remarqd.com"
                 className="text-white/50 hover:text-white text-sm font-medium transition-colors"
               >
-                hello@marqd.in
+                quote@remarqd.com
               </a>
             </div>
           </div>
@@ -107,7 +107,7 @@ export function Footer() {
             <ul className="space-y-2.5">
               <li><Link to="/contact" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">Contact</Link></li>
               <li><a href="https://wa.me/919999999999" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">WhatsApp</a></li>
-              <li><a href="mailto:hello@marqd.in" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">hello@marqd.in</a></li>
+              <li><a href="mailto:quote@remarqd.com" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">quote@remarqd.com</a></li>
             </ul>
           </div>
           <div>
@@ -130,7 +130,7 @@ export function Footer() {
       {/* ── LEGAL strip ────────────────────────────────────────────── */}
       <div className="bg-[#EFEFED] px-6 md:px-12 py-5">
         <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-[11px] text-foreground/40">
-          <p>© {new Date().getFullYear()} Marqd. All rights reserved. &nbsp;·&nbsp; GST: XXAABCG1234A1Z5 &nbsp;·&nbsp; CIN: U74999MH2022PTC123456</p>
+          <p>© {new Date().getFullYear()} Remarqd. All rights reserved. &nbsp;·&nbsp; GST: XXAABCG1234A1Z5 &nbsp;·&nbsp; CIN: U74999MH2022PTC123456</p>
           <div className="flex gap-5">
             <Link to="/privacy" className="hover:text-foreground/60 transition-colors">Privacy</Link>
             <Link to="/terms" className="hover:text-foreground/60 transition-colors">Terms</Link>

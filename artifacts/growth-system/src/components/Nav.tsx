@@ -45,7 +45,7 @@ export function Nav() {
         >
           <LogoMark dark={dark} />
           <span className={cn("transition-colors duration-300", dark ? "text-white" : "text-foreground")}>
-            Marqd
+            Remarqd
           </span>
         </Link>
 
