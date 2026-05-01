@@ -71,10 +71,13 @@ export function Configurator() {
           Name: "",
           Email: contact.email,
           Phone: contact.phone,
+          City: "",
           Services: servicesLabel,
           "Monthly Estimate": monthly,
           "One-time": onetime,
           Message: "",
+          "Current Work": "",
+          "Why Partner": "",
         }),
       ]);
       toast.success("Quote submitted! Check your inbox for confirmation.");

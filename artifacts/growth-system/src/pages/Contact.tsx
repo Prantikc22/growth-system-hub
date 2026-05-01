@@ -40,10 +40,13 @@ export default function Contact() {
           Name: parsed.data.name,
           Email: parsed.data.email,
           Phone: parsed.data.phone,
+          City: "",
           Services: "",
           "Monthly Estimate": "",
           "One-time": "",
           Message: parsed.data.message,
+          "Current Work": "",
+          "Why Partner": "",
         }),
       ]);
       toast.success("Got it. We'll be in touch within 24 hours.");
@@ -66,13 +69,17 @@ export default function Contact() {
             <h1 className="heading-display">Let's talk.</h1>
             <p className="mt-5 text-lg text-muted-foreground">Tell us what you're building. We respond within a working day.</p>
             <div className="mt-10 space-y-4 text-sm">
-              <a href="https://wa.me/919999999999" data-cursor="Chat" className="block rounded-2xl border border-border p-5 hover:border-foreground transition-colors">
+              <a href="https://wa.me/919073559000" data-cursor="Chat" className="block rounded-2xl border border-border p-5 hover:border-foreground transition-colors">
                 <div className="text-xs text-muted-foreground uppercase tracking-widest">WhatsApp</div>
-                <div className="text-lg font-bold mt-1">+91 99999 99999</div>
+                <div className="text-lg font-bold mt-1">+91 90735 59000</div>
               </a>
-              <a href="mailto:quote@remarqd.com" className="block rounded-2xl border border-border p-5 hover:border-foreground transition-colors">
+              <a href="tel:+919073559000" className="block rounded-2xl border border-border p-5 hover:border-foreground transition-colors">
+                <div className="text-xs text-muted-foreground uppercase tracking-widest">Phone</div>
+                <div className="text-lg font-bold mt-1">+91 90735 59000</div>
+              </a>
+              <a href="mailto:hello@remarqd.com" className="block rounded-2xl border border-border p-5 hover:border-foreground transition-colors">
                 <div className="text-xs text-muted-foreground uppercase tracking-widest">Email</div>
-                <div className="text-lg font-bold mt-1">quote@remarqd.com</div>
+                <div className="text-lg font-bold mt-1">hello@remarqd.com</div>
               </a>
             </div>
           </Reveal>

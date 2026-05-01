@@ -73,10 +73,10 @@ export function Footer() {
                 </SocialIcon>
               </div>
               <a
-                href="mailto:quote@remarqd.com"
+                href="mailto:hello@remarqd.com"
                 className="text-white/50 hover:text-white text-sm font-medium transition-colors"
               >
-                quote@remarqd.com
+                hello@remarqd.com
               </a>
             </div>
           </div>
@@ -97,8 +97,14 @@ export function Footer() {
           <div>
             <p className="text-[10px] font-bold uppercase tracking-widest text-foreground/40 mb-4">Services</p>
             <ul className="space-y-2.5">
-              {["Performance Marketing", "Social Media", "Content Creation", "Web & Tech", "Personal Branding"].map((s) => (
-                <li key={s}><Link to="/services" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">{s}</Link></li>
+              {[
+                ["Performance Marketing", "/services/performance-marketing"],
+                ["Social Media", "/services/social-media"],
+                ["Content Creation", "/services/content-creation"],
+                ["Web & Tech", "/services/web-tech"],
+                ["Personal Branding", "/services/personal-branding"],
+              ].map(([label, path]) => (
+                <li key={path}><Link to={path} className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">{label}</Link></li>
               ))}
             </ul>
           </div>
@@ -106,8 +112,8 @@ export function Footer() {
             <p className="text-[10px] font-bold uppercase tracking-widest text-foreground/40 mb-4">Reach us</p>
             <ul className="space-y-2.5">
               <li><Link to="/contact" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">Contact</Link></li>
-              <li><a href="https://wa.me/919999999999" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">WhatsApp</a></li>
-              <li><a href="mailto:quote@remarqd.com" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">quote@remarqd.com</a></li>
+              <li><a href="https://wa.me/919073559000" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">WhatsApp</a></li>
+              <li><a href="mailto:hello@remarqd.com" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">hello@remarqd.com</a></li>
             </ul>
           </div>
           <div>

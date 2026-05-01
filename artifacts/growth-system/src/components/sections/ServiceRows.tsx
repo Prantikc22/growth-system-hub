@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/lib/utils";
 
 const SERVICES = [
   {
     n: "01",
+    slug: "performance-marketing",
     title: "Performance Marketing",
     pitch: "Meta, Google, YouTube — always-on creative testing and a daily optimisation cadence.",
     bullets: ["Funnel architecture & tracking", "Daily creative testing", "Weekly outcomes review", "SEO + WhatsApp campaigns add-ons"],
@@ -12,6 +14,7 @@ const SERVICES = [
   },
   {
     n: "02",
+    slug: "social-media",
     title: "Social Media Management",
     pitch: "Brand-led posting, reels and community — built around your voice, not a template.",
     bullets: ["Channel-specific content calendar", "Reels production engine", "Community management", "Monthly brand reporting"],
@@ -19,6 +22,7 @@ const SERVICES = [
   },
   {
     n: "03",
+    slug: "content-creation",
     title: "Content Creation",
     pitch: "Studio-grade creatives, reels, blogs, copy and identity — built in-house.",
     bullets: ["Static & animated creatives", "Reels & shorts production", "Long-form content / blogs", "Brand identity & guidelines"],
@@ -26,6 +30,7 @@ const SERVICES = [
   },
   {
     n: "04",
+    slug: "web-tech",
     title: "Web · App · Ecom · Chatbots",
     pitch: "Sites, stores, mobile apps, AI chatbots and WhatsApp automations — fast, measurable, owned.",
     bullets: ["High-converting websites & landing pages", "Shopify / custom ecommerce", "iOS + Android apps", "AI chatbots & WhatsApp flows"],
@@ -33,6 +38,7 @@ const SERVICES = [
   },
   {
     n: "05",
+    slug: "personal-branding",
     title: "Personal Branding & Talent",
     pitch: "Make founders and creators the brand. Long-term thought leadership built like a media company.",
     bullets: ["Founder positioning & narrative", "Weekly content production", "Distribution & community", "PR & deal management", "Talent management & representation", "Brand deals & partnerships"],
@@ -75,9 +81,13 @@ export function ServiceRows() {
                   </div>
                   <div className="md:col-span-5 text-muted-foreground text-lg">{s.pitch}</div>
                   <div className="md:col-span-2 flex md:justify-end">
-                    <span className={cn("text-xs font-semibold uppercase tracking-widest text-foreground/60 transition-transform", isActive && "translate-x-1")}>
+                    <Link
+                      to={`/services/${s.slug}`}
+                      className={cn("text-xs font-semibold uppercase tracking-widest text-foreground/60 hover:text-foreground transition-all", isActive && "translate-x-1")}
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       Explore →
-                    </span>
+                    </Link>
                   </div>
                 </div>
                 <div className={cn(
