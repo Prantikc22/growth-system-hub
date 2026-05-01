@@ -5,10 +5,15 @@ const PARTNERS = [
   "WhatsApp Business", "Razorpay", "Klaviyo", "Zoho CRM",
 ];
 
-const CLIENTS = [
-  "Kairo Coffee", "Linen by Anaya", "Northstar Realty", "Okura Ramen",
-  "Tilt Finance", "Halo Bots", "Atelier Noir", "Inkpath EduTech",
-  "Lumen Skin", "Vyom Strength", "Nira Stays", "Saanvi Jewels",
+const CLIENT_LOGOS = [
+  { src: "/clients/82e.webp",       alt: "82°E",          w: 96  },
+  { src: "/clients/bodycraft.webp", alt: "Bodycraft",     w: 140 },
+  { src: "/clients/cosmic.webp",    alt: "Cosmic",        w: 130 },
+  { src: "/clients/karigari.png",   alt: "Karigari",      w: 150 },
+  { src: "/clients/chai-point.png", alt: "Chai Point",    w: 110 },
+  { src: "/clients/sarada.png",     alt: "Sarada Robotech", w: 130 },
+  { src: "/clients/mamagoto.png",   alt: "Mamagoto",      w: 120 },
+  { src: "/clients/login-logo.png", alt: "Client",        w: 60  },
 ];
 
 export function MarqueeStrip() {
@@ -27,18 +32,25 @@ export function MarqueeStrip() {
         ))}
       </Marquee>
 
-      <div className="h-4" />
+      <div className="h-5" />
 
-      {/* Row 2 — Clients */}
+      {/* Row 2 — Client logos */}
       <Marquee reverse duration={50} gap={64}>
-        {CLIENTS.map((t) => (
-          <span
-            key={t}
-            className="text-2xl md:text-3xl font-extrabold tracking-tight text-ink-foreground/80 flex items-center gap-16"
-          >
-            {t}
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary-glow/80 shrink-0" />
-          </span>
+        {CLIENT_LOGOS.map((logo) => (
+          <div key={logo.alt} className="flex items-center">
+            <img
+              src={logo.src}
+              alt={logo.alt}
+              style={{
+                width: logo.w,
+                height: 36,
+                objectFit: "contain",
+                filter: "brightness(0) invert(1)",
+              }}
+              className="opacity-45 hover:opacity-75 transition-opacity duration-300"
+              draggable={false}
+            />
+          </div>
         ))}
       </Marquee>
     </section>
