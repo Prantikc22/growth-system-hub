@@ -35,7 +35,7 @@ const SERVICES = [
     n: "05",
     title: "Personal Branding & Talent",
     pitch: "Make founders and creators the brand. Long-term thought leadership built like a media company.",
-    bullets: ["Founder positioning & narrative", "Weekly content production", "Distribution & community", "PR & deal management"],
+    bullets: ["Founder positioning & narrative", "Weekly content production", "Distribution & community", "PR & deal management", "Talent management & representation", "Brand deals & partnerships"],
     accent: "bg-[#DC2626]",
   },
 ];

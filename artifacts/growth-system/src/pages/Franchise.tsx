@@ -25,7 +25,7 @@ export default function Franchise() {
         <div className="grid lg:grid-cols-12 gap-12">
           <Reveal variant="up" className="lg:col-span-5">
             <p className="pill mb-4">Franchise · Partner</p>
-            <h1 className="heading-display">Run a Growth System chapter in your city.</h1>
+            <h1 className="heading-display">Run a Marqd chapter in your city.</h1>
             <p className="mt-5 text-lg text-muted-foreground">For senior operators with a network and a track record. We bring the brand, the system, and the playbook.</p>
             <ul className="mt-8 space-y-3 text-foreground/80">
               {["Exclusive territory", "Full operating playbook", "Brand & marketing engine", "Quarterly partner summits"].map((b) => (

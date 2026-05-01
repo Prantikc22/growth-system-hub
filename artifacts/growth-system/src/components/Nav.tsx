@@ -28,9 +28,9 @@ export function Nav() {
       scrolled ? "bg-background/80 backdrop-blur-xl border-b border-border" : "bg-transparent"
     )}>
       <div className="container-wide flex h-16 md:h-20 items-center justify-between">
-        <Link to="/" className="reveal-fade flex items-center gap-2 font-display font-extrabold text-lg tracking-tight" style={{ animationDelay: "100ms" }}>
+        <Link to="/" className="reveal-fade flex items-center gap-2 font-display font-extrabold text-xl tracking-tight" style={{ animationDelay: "100ms" }}>
           <LogoMark />
-          <span>Growth System</span>
+          <span>Marqd</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">

@@ -1,0 +1,119 @@
+FOOTER REDESIGN
+════════════════════════════════════════
+Replace the existing footer entirely with this design:
+
+FOOTER STRUCTURE — two distinct sections:
+
+─────────────────────────────────────
+TOP SECTION (dark, statement)
+─────────────────────────────────────
+Background: #0C0C0C
+Padding: 80px top, 60px bottom
+
+Top strip (flex, space-between):
+  Left: Small text (muted white, 13px):
+    "Ready to grow?"
+  Right: Three city time displays (like Schbang):
+    Each is a pill with border (white border, 
+    transparent bg, white text):
+    "Kolkata  02:45 PM"
+    "Bangalore  02:45 PM"  
+    "London  09:15 AM"
+    Times are LIVE — update every minute via 
+    setInterval in a client component.
+    Format: city name bold + time regular.
+
+Center: Company name KARRO in massive type.
+  Font: Plus Jakarta Sans, 900 weight
+  Size: clamp(80px, 15vw, 180px)
+  Color: white
+  Letter spacing: -0.02em
+  The name fills the full width of the container.
+  Centered horizontally.
+  
+  Below the name — one line, centered, muted:
+  "Not an agency. A growth system."
+  Font: 16px, color: #6B7280
+
+Bottom of dark section (flex, space-between):
+  Left: Social icons (LinkedIn, Instagram, YouTube, X)
+    Each: white circle 36px, icon inside
+    On hover: white bg, black icon (invert)
+  
+  Right: "Proudly built in India 🇮🇳"
+    14px, muted white
+
+─────────────────────────────────────
+BOTTOM SECTION (light, navigation)
+─────────────────────────────────────
+Background: #F7F6F3
+Padding: 48px top and bottom
+
+4-column grid:
+
+Column 1 — SERVICES:
+  Performance Marketing
+  Social Media Management
+  Content Creation
+  Web & Tech
+  Personal Branding & Talent
+  Events (link to contact)
+
+Column 2 — WORK:
+  Case Studies
+  Portfolio
+  Testimonials
+  (empty row)
+  
+Column 3 — COMPANY:
+  About
+  Pricing
+  Franchise / Partner
+  Blog
+  Contact
+
+Column 4 — GET IN TOUCH:
+  "hello@karro.in" (email link)
+  WhatsApp button (green, small pill):
+    "Chat on WhatsApp →"
+  "Book a Free Call" (text link → Calendly)
+
+Column header style: 
+  12px, all caps, letter-spacing 0.1em, 
+  color: #6B7280, margin-bottom 16px
+Column links: 
+  14px, color: #0C0C0C, line-height 2.2
+  Hover: color #2563EB, no underline
+
+─────────────────────────────────────
+VERY BOTTOM STRIP
+─────────────────────────────────────
+Background: #EFEFED (slightly darker than bottom section)
+Height: 48px
+Flex, space-between, aligned center
+Padding: 0 (uses container width)
+
+Left: "© 2025 Karro. All rights reserved."
+  13px, muted
+
+Center: "GST: [placeholder] · CIN: [placeholder]"
+  13px, muted
+
+Right: "Privacy Policy · Terms of Service"
+  13px, text links, hover underline
+
+─────────────────────────────────────
+MOBILE FOOTER
+─────────────────────────────────────
+Dark top section:
+  City clocks: horizontal scroll (overflow-x auto)
+  Company name: clamp(56px, 18vw, 80px)
+  Social icons centered
+
+Bottom section:
+  2-column grid for nav columns
+  Get in touch: full width below
+
+Bottom strip:
+  Stacked, centered text
+  3 lines: copyright · GST · privacy links

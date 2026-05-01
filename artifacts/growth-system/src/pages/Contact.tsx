@@ -45,9 +45,9 @@ export default function Contact() {
                 <div className="text-xs text-muted-foreground uppercase tracking-widest">WhatsApp</div>
                 <div className="text-lg font-bold mt-1">+91 99999 99999</div>
               </a>
-              <a href="mailto:hi@growthsystem.in" className="block rounded-2xl border border-border p-5 hover:border-foreground transition-colors">
+              <a href="mailto:hello@marqd.in" className="block rounded-2xl border border-border p-5 hover:border-foreground transition-colors">
                 <div className="text-xs text-muted-foreground uppercase tracking-widest">Email</div>
-                <div className="text-lg font-bold mt-1">hi@growthsystem.in</div>
+                <div className="text-lg font-bold mt-1">hello@marqd.in</div>
               </a>
             </div>
           </Reveal>
