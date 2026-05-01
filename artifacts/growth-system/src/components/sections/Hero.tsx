@@ -2,18 +2,23 @@ import { smoothScrollTo } from "@/lib/smooth-scroll";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden min-h-screen flex flex-col bg-[#080B12]">
-      {/* subtle radial glow */}
+    <section className="relative overflow-hidden min-h-screen flex flex-col">
+      {/* ── Full-bleed background photo ───────────────────────────────────── */}
       <div
-        className="absolute top-0 right-0 w-[700px] h-[700px] opacity-20 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at top right, #6366F1 0%, transparent 65%)" }}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/hero-laptop.png')" }}
       />
+      {/* Dark gradient: heavy on left for text, fades right so photo shows */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#080B12]/95 via-[#080B12]/60 to-[#080B12]/10" />
+      {/* Top fade */}
+      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#080B12]/80 to-transparent" />
+      {/* Bottom fade into stats */}
+      <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#080B12] to-transparent" />
 
-      {/* ── Main grid ────────────────────────────────────────────────────── */}
-      <div className="container-wide flex-1 grid lg:grid-cols-2 gap-8 xl:gap-12 items-center pt-28 md:pt-32 pb-12 relative z-10">
-
-        {/* Left — text */}
-        <div>
+      {/* ── Text — left half ─────────────────────────────────────────────── */}
+      <div className="container-wide flex-1 flex items-center relative z-10 pt-28 md:pt-32 pb-16">
+        <div className="max-w-[50%]">
+          {/* Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 mb-7">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-white/70 text-xs font-medium tracking-wide">
@@ -21,6 +26,7 @@ export function Hero() {
             </span>
           </div>
 
+          {/* Headline */}
           <h1 className="text-[clamp(2.6rem,4.2vw,4.8rem)] font-black leading-[1.05] tracking-tight text-white mb-6">
             Growth systems<br />
             that{" "}
@@ -36,11 +42,13 @@ export function Hero() {
             </span>
           </h1>
 
-          <p className="text-white/50 text-base md:text-lg leading-relaxed mb-9 max-w-sm">
+          {/* Subtitle */}
+          <p className="text-white/50 text-base md:text-lg leading-relaxed mb-9 max-w-xs">
             We scale modern brands through ads, content, funnels and
             retention systems.
           </p>
 
+          {/* CTAs */}
           <div className="flex flex-wrap gap-3 mb-10">
             <button
               onClick={() => smoothScrollTo("#configurator")}
@@ -56,6 +64,7 @@ export function Hero() {
             </button>
           </div>
 
+          {/* Trust row */}
           <div className="flex items-center gap-3">
             <div className="flex -space-x-2">
               {(["#7C3AED", "#0F766E", "#A8336E"] as const).map((c, i) => (
@@ -80,25 +89,10 @@ export function Hero() {
             </div>
           </div>
         </div>
-
-        {/* Right — laptop image with edge fades so it dissolves into the dark bg */}
-        <div className="relative flex items-center justify-center lg:justify-end overflow-hidden">
-          <img
-            src="/hero-laptop.png"
-            alt="Marqd dashboard on laptop"
-            className="w-full max-w-[640px] object-contain select-none"
-            draggable={false}
-          />
-          {/* Edge-fade overlays to blend into dark background */}
-          <div className="absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[#080B12] to-transparent pointer-events-none" />
-          <div className="absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-[#080B12] to-transparent pointer-events-none" />
-          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#080B12] to-transparent pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-[#080B12] to-transparent pointer-events-none" />
-        </div>
       </div>
 
       {/* ── Stats bar ────────────────────────────────────────────────────── */}
-      <div className="relative z-10 border-t border-white/[0.07]">
+      <div className="relative z-10">
         <div className="container-wide py-6 grid grid-cols-2 md:grid-cols-4 gap-5">
           {STATS.map((s) => (
             <div key={s.label} className="flex items-center gap-3">
