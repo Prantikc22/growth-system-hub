@@ -8,15 +8,19 @@ export async function appendToSheet({
   row: Record<string, string>;
 }) {
   if (!SHEETS_URL) {
-    console.info("[sheets] VITE_SHEETS_URL not configured — skipping sheet append", { sheet, row });
+    console.info("[sheets] VITE_SHEETS_URL not configured — skipping", { sheet, row });
     return;
   }
-  const res = await fetch(SHEETS_URL, {
+
+  const url = `${SHEETS_URL}?sheet=${encodeURIComponent(sheet)}`;
+
+  const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ sheet, row }),
+    body: JSON.stringify({ data: [row] }),
   });
+
   if (!res.ok) {
-    console.error("[sheets] append failed", await res.text());
+    console.error("[sheets] SheetDB append failed", await res.text());
   }
 }
