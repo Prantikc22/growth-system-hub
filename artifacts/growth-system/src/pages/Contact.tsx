@@ -35,14 +35,15 @@ export default function Contact() {
           bodyHtml: contactConfirmationHtml(parsed.data.name),
         }),
         appendToSheet({
-          sheet: "Contact",
-          row: {
-            Timestamp: new Date().toISOString(),
-            Name: parsed.data.name,
-            Email: parsed.data.email,
-            Phone: parsed.data.phone,
-            Message: parsed.data.message,
-          },
+          Timestamp: new Date().toISOString(),
+          Type: "Contact",
+          Name: parsed.data.name,
+          Email: parsed.data.email,
+          Phone: parsed.data.phone,
+          Services: "",
+          "Monthly Estimate": "",
+          "One-time": "",
+          Message: parsed.data.message,
         }),
       ]);
       toast.success("Got it. We'll be in touch within 24 hours.");

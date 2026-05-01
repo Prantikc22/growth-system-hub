@@ -1,20 +1,12 @@
 const SHEETS_URL = import.meta.env.VITE_SHEETS_URL as string | undefined;
 
-export async function appendToSheet({
-  sheet,
-  row,
-}: {
-  sheet: string;
-  row: Record<string, string>;
-}) {
+export async function appendToSheet(row: Record<string, string>) {
   if (!SHEETS_URL) {
-    console.info("[sheets] VITE_SHEETS_URL not configured — skipping", { sheet, row });
+    console.info("[sheets] VITE_SHEETS_URL not configured — skipping", row);
     return;
   }
 
-  const url = `${SHEETS_URL}?sheet=${encodeURIComponent(sheet)}`;
-
-  const res = await fetch(url, {
+  const res = await fetch(SHEETS_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ data: [row] }),

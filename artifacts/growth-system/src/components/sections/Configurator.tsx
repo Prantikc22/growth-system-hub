@@ -66,15 +66,15 @@ export function Configurator() {
           bodyHtml: quoteConfirmationHtml(contact.email.split("@")[0], servicesLabel || "Custom package"),
         }),
         appendToSheet({
-          sheet: "Quotes",
-          row: {
-            Timestamp: new Date().toISOString(),
-            Email: contact.email,
-            Phone: contact.phone,
-            Services: servicesLabel,
-            "Monthly Estimate": monthly,
-            "One-time": onetime,
-          },
+          Timestamp: new Date().toISOString(),
+          Type: "Quote",
+          Name: "",
+          Email: contact.email,
+          Phone: contact.phone,
+          Services: servicesLabel,
+          "Monthly Estimate": monthly,
+          "One-time": onetime,
+          Message: "",
         }),
       ]);
       toast.success("Quote submitted! Check your inbox for confirmation.");
