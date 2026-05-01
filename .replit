@@ -38,3 +38,8 @@ externalPort = 80
 [[ports]]
 localPort = 19555
 externalPort = 3002
+
+[userenv]
+
+[userenv.shared]
+VITE_SHEETS_URL = "https://sheetdb.io/api/v1/zrbctb63oan1w"
