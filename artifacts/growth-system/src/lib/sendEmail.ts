@@ -1,9 +1,5 @@
-const RESEND_API_KEY = import.meta.env.VITE_RESEND_API_KEY as string;
-const FROM = "Remarqd <quote@remarqd.com>";
-
 export async function sendConfirmationEmail({
   toEmail,
-  toName,
   subject,
   bodyHtml,
 }: {
@@ -12,27 +8,14 @@ export async function sendConfirmationEmail({
   subject: string;
   bodyHtml: string;
 }) {
-  if (!RESEND_API_KEY) {
-    console.warn("VITE_RESEND_API_KEY not set — skipping email");
-    return;
-  }
-  const res = await fetch("https://api.resend.com/emails", {
+  const res = await fetch("/api/send-email", {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${RESEND_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: FROM,
-      to: [toEmail],
-      bcc: ["quote@remarqd.com"],
-      subject,
-      html: bodyHtml,
-    }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ to: toEmail, subject, html: bodyHtml }),
   });
   if (!res.ok) {
     const err = await res.text();
-    console.error("Resend error:", err);
+    console.error("Email API error:", err);
   }
 }
 
