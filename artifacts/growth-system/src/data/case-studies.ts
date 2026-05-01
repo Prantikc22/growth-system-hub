@@ -8,8 +8,9 @@ export type CaseStudy = {
   metrics: { value: number; suffix: string; prefix?: string; label: string }[];
   duration: string;
   region: string;
-  accent: string; // hex for art block
+  accent: string;
   art: "phone" | "browser" | "swatch" | "ad" | "venue";
+  image?: string;
   body: string;
 };
 
@@ -30,6 +31,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     region: "Bengaluru → Pan-India",
     accent: "#7B3F00",
     art: "ad",
+    image: "/cases/countrybeans.jpeg",
     body: "Kairo had great beans and a tiny following. We built a 3-step funnel anchored on a starter pack, ran always-on Meta + Google with weekly creative refresh, and produced a daily content cadence around brewing rituals. Subscriptions doubled twice within 90 days.",
   },
   {
@@ -48,6 +50,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     region: "Mumbai",
     accent: "#C9A27A",
     art: "phone",
+    image: "/cases/linen.webp",
     body: "We rebuilt the Shopify store with conversion-first templates, set up email + WhatsApp flows, and produced 24 reels a month — half founder-led, half UGC. Repeat purchase rate moved from 11% to 35%.",
   },
   {
@@ -66,6 +69,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     region: "Pune",
     accent: "#1E40AF",
     art: "browser",
+    image: "/cases/realty.jpeg",
     body: "We replaced a generic landing with a project-specific microsite per launch, layered Meta lead-form ads with a qualifying chatbot, and routed serious enquiries to a WhatsApp booking flow. ₹92 Cr of inventory moved in a year.",
   },
   {
@@ -84,6 +88,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     region: "Jaipur",
     accent: "#A8336E",
     art: "swatch",
+    image: "/cases/jewel.jpg",
     body: "We built the founder as a credible heritage voice — workshop tours, sketch-to-product reels, customer story drops. 38% of DMs converted to paid orders without a single performance campaign in the first six months.",
   },
   {
@@ -102,6 +107,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     region: "Hyderabad",
     accent: "#0F766E",
     art: "browser",
+    image: "/cases/fitpass.png",
     body: "Single-source booking tied to location-aware Meta + Google. Each trainer became a content character. Trial → paid conversion went from 7% to 36%.",
   },
   {
@@ -120,6 +126,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     region: "Delhi",
     accent: "#DC2626",
     art: "venue",
+    image: "/cases/noodle-bar.jpg",
     body: "Chef-as-character reels, behind-the-counter content, and one viral 'authentic-vs-Indian' broth thread. Outlets 2 & 3 launched to 14K-strong waitlists.",
   },
   {
@@ -138,6 +145,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     region: "Bengaluru",
     accent: "#E879A7",
     art: "phone",
+    image: "/cases/deconstruct.webp",
     body: "Quiz funnel made every visit personal. We tested 40+ creatives a month and let the data pick winners. Blended ROAS hit 4.1x by month 4.",
   },
   {
@@ -156,6 +164,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     region: "Kota",
     accent: "#7C3AED",
     art: "ad",
+    image: "/cases/edtech.jpg",
     body: "We replaced a static landing with a 60-second value calculator, ran 5 hooks a day on Meta and YouTube, and routed leads through WhatsApp counselling. CPL fell from ₹318 to ₹47.",
   },
   {
@@ -174,6 +183,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     region: "Goa & Coorg",
     accent: "#0EA5E9",
     art: "venue",
+    image: "/cases/raho.jpg",
     body: "We built a direct-booking website that beat MakeMyTrip on UX and bundled it with WhatsApp concierge. Direct bookings overtook OTA share in 4 months.",
   },
   {
@@ -192,6 +202,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     region: "Mumbai",
     accent: "#16A34A",
     art: "phone",
+    image: "/cases/fintech.webp",
     body: "Founder posted 4 explainer reels a week. We built a sub-second app and a content library that pre-answered every objection. 41K active SIPs in year one.",
   },
   {
@@ -210,6 +221,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     region: "Remote (India + US)",
     accent: "#2563EB",
     art: "browser",
+    image: "/cases/ads.jpg",
     body: "Built the marketing site as the demo. Layered ICP-specific landing pages with vertical creatives. LTV:CAC settled at 3.8x by month 5.",
   },
   {
@@ -228,6 +240,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     region: "Delhi",
     accent: "#0F0F0F",
     art: "swatch",
+    image: "/cases/inaara.webp",
     body: "We turned drops into events — countdown reels, behind-the-stitch films, founder voice notes. Email became the second store. Each drop sells out in under 90 minutes.",
   },
 ];

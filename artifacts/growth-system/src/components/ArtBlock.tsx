@@ -3,7 +3,15 @@ import type { CaseStudy } from "@/data/case-studies";
 export function ArtBlock({ cs, className }: { cs: CaseStudy; className?: string }) {
   return (
     <div className={`aspect-[4/5] rounded-2xl overflow-hidden relative ${className || ""}`}>
-      <CaseStudyIllustration slug={cs.slug} accent={cs.accent} client={cs.client} />
+      {cs.image ? (
+        <img
+          src={cs.image}
+          alt={cs.client}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      ) : (
+        <CaseStudyIllustration slug={cs.slug} accent={cs.accent} client={cs.client} />
+      )}
       {/* Bottom info strip */}
       <div className="absolute inset-x-0 bottom-0 p-5 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent z-10">
         <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 backdrop-blur-sm px-2.5 py-1 text-[10px] font-bold text-white uppercase tracking-widest mb-2">

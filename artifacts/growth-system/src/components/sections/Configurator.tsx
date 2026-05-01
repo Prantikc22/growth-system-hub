@@ -334,11 +334,11 @@ export function Configurator() {
                   </Button>
                 ) : (
                   <Button
-                    onClick={() => toast("Razorpay checkout will open. Add keys to enable live payments.")}
+                    onClick={() => toast("We'll reach out to confirm your plan and send a final quote.")}
                     className="w-full rounded-full h-12 bg-accent text-accent-foreground hover:bg-accent/90 font-semibold"
                     disabled={est.total === 0}
                   >
-                    Pay now →
+                    Get Final Quote →
                   </Button>
                 )}
               </div>
