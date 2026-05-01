@@ -14,18 +14,16 @@ type Item = {
 };
 
 const ITEMS: Item[] = [
-  { id: "1",  cat: "Social",   title: "Reels — Brewing Rituals",    client: "Kairo Coffee",     tone: "#7B3F00", art: "phone"   },
-  { id: "2",  cat: "Web",      title: "Direct booking site",        client: "Nira Stays",       tone: "#0EA5E9", art: "browser" },
-  { id: "3",  cat: "Branding", title: "Identity system",            client: "Atelier Noir",     tone: "#0F0F0F", art: "swatch"  },
-  { id: "4",  cat: "Ads",      title: "Cold-traffic creative",      client: "Lumen Skin",       tone: "#E879A7", art: "ad"      },
-  { id: "5",  cat: "Events",   title: "Outlet 3 launch",            client: "Okura Ramen",      tone: "#DC2626", art: "venue"   },
-  { id: "6",  cat: "Social",   title: "Founder reels engine",       client: "Tilt Finance",     tone: "#16A34A", art: "phone"   },
-  { id: "7",  cat: "Web",      title: "Marketing site as demo",     client: "Halo Bots",        tone: "#2563EB", art: "browser" },
-  { id: "8",  cat: "Branding", title: "Heritage palette",           client: "Saanvi Jewels",    tone: "#A8336E", art: "swatch"  },
-  { id: "9",  cat: "Ads",      title: "JEE prep — 5 hooks/day",     client: "Inkpath EduTech",  tone: "#7C3AED", art: "ad"      },
-  { id: "10", cat: "Web",      title: "Project microsites",         client: "Northstar Realty", tone: "#1E40AF", art: "browser" },
-  { id: "11", cat: "Social",   title: "Founder content series",     client: "Linen by Anaya",   tone: "#C9A27A", art: "phone"   },
-  { id: "12", cat: "Events",   title: "Drop launch",                client: "Atelier Noir",     tone: "#0F0F0F", art: "venue"   },
+  { id: "1",  cat: "Social",   title: "Reels — Brewing Rituals",    client: "Country Bean Coffee", tone: "#7B3F00", art: "phone"   },
+  { id: "2",  cat: "Web",      title: "Project microsites",         client: "Flent",            tone: "#1E40AF", art: "browser" },
+  { id: "3",  cat: "Branding", title: "Identity system",            client: "Inaara",           tone: "#0F0F0F", art: "swatch"  },
+  { id: "4",  cat: "Ads",      title: "Cold-traffic creative",      client: "Deconstruct Skincare", tone: "#E879A7", art: "ad" },
+  { id: "5",  cat: "Events",   title: "Outlet 3 launch",            client: "The Noodle Bar",   tone: "#DC2626", art: "venue"   },
+  { id: "6",  cat: "Social",   title: "Founder content series",     client: "Sohum Linen",      tone: "#C9A27A", art: "phone"   },
+  { id: "7",  cat: "Branding", title: "Heritage palette",           client: "Svaraa Jewels",    tone: "#A8336E", art: "swatch"  },
+  { id: "8",  cat: "Ads",      title: "JEE prep — 5 hooks/day",     client: "Competishun",      tone: "#7C3AED", art: "ad"      },
+  { id: "9",  cat: "Social",   title: "Membership growth reels",    client: "Fitpass",          tone: "#0F766E", art: "phone"   },
+  { id: "10", cat: "Events",   title: "Drop launch",                client: "Inaara",           tone: "#0F0F0F", art: "venue"   },
 ];
 
 const FILTERS = ["All", "Social", "Web", "Branding", "Ads", "Events"] as const;

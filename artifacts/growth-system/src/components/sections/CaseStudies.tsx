@@ -14,7 +14,7 @@ export function CaseStudies() {
             <p className="pill mb-4">Selected work</p>
             <h2 className="heading-section">Brands that compounded.</h2>
           </div>
-          <Link to="/work" className="text-sm font-semibold text-foreground hover:text-primary transition-colors">View all 12 case studies →</Link>
+          <Link to="/work" className="text-sm font-semibold text-foreground hover:text-primary transition-colors">View all {CASE_STUDIES.length} case studies →</Link>
         </Reveal>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">

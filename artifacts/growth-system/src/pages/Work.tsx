@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
-const FILTERS = ["All", "D2C", "F&B", "Fashion", "SaaS", "Real Estate", "Education", "Beauty", "Fitness", "Hospitality", "Finance"] as const;
+const FILTERS = ["All", "D2C", "F&B", "Fashion", "Real Estate", "Education", "Beauty", "Fitness"] as const;
 
 export default function Work() {
   const [f, setF] = useState<(typeof FILTERS)[number]>("All");
@@ -19,7 +19,7 @@ export default function Work() {
       <main className="pt-28 md:pt-36 pb-24 container-wide">
         <Reveal variant="up" className="max-w-2xl mb-10">
           <p className="pill mb-4">Selected work</p>
-          <h1 className="heading-display">All 12 case studies.</h1>
+          <h1 className="heading-display">All {CASE_STUDIES.length} case studies.</h1>
           <p className="mt-5 text-lg text-muted-foreground">Real brands. Real outcomes. Filtered by category.</p>
         </Reveal>
         <div className="flex flex-wrap gap-2 mb-10">

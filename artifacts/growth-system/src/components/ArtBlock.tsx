@@ -40,30 +40,23 @@ function CaseStudyIllustration({
     .toUpperCase();
 
   switch (slug) {
-    case "kairo-coffee":
+    case "country-bean-coffee":
       return <CoffeeIllustration accent={accent} initials={initials} />;
-    case "linen-by-anaya":
+    case "sohum-linen":
       return <FabricIllustration accent={accent} initials={initials} />;
-    case "northstar-realty":
+    case "flent":
       return <RealtyIllustration accent={accent} initials={initials} />;
-    case "nira-stays":
-      return <HotelIllustration accent={accent} initials={initials} />;
-    case "okura-ramen":
+    case "the-noodle-bar":
       return <RamenIllustration accent={accent} initials={initials} />;
-    case "tilt-finance":
-      return <FintechIllustration accent={accent} initials={initials} />;
-    case "halo-bots":
-      return <AiIllustration accent={accent} initials={initials} />;
-    case "atelier-noir":
+    case "inaara":
       return <FashionIllustration accent={accent} initials={initials} />;
-    case "lumen-skin":
+    case "deconstruct-skincare":
       return <SkincareIllustration accent={accent} initials={initials} />;
-    case "vyom-gym":
-    case "vyom-strength":
+    case "fitpass":
       return <FitnessIllustration accent={accent} initials={initials} />;
-    case "inkpath-edu":
+    case "competishun":
       return <EduIllustration accent={accent} initials={initials} />;
-    case "saanvi-jewels":
+    case "svaraa-jewels":
       return <JewelsIllustration accent={accent} initials={initials} />;
     default:
       return <DefaultIllustration accent={accent} initials={initials} />;
@@ -97,7 +90,7 @@ function CoffeeIllustration({ accent }: { accent: string; initials: string }) {
         <ellipse cx="150" cy="261" rx="50" ry="5" fill="#ddd4c4" />
         {/* Brand name on cup */}
         <text x="150" y="235" textAnchor="middle" fill={accent} fontSize="10" fontWeight="bold" letterSpacing="2">
-          KAIRO
+          COUNTRY BEAN
         </text>
       </svg>
     </div>
@@ -130,7 +123,7 @@ function FabricIllustration({ accent }: { accent: string; initials: string }) {
         ))}
         {/* Brand logo on fabric */}
         <text x="150" y="155" textAnchor="middle" fill={accent} fontSize="22" fontWeight="900" letterSpacing="3" fillOpacity="0.7">
-          ANAYA
+          SOHUM
         </text>
         <line x1="100" y1="165" x2="200" y2="165" stroke={accent} strokeWidth="1" strokeOpacity="0.4" />
         <text x="150" y="180" textAnchor="middle" fill={accent} fontSize="8" letterSpacing="6" fillOpacity="0.5">
@@ -183,7 +176,7 @@ function RealtyIllustration({ accent }: { accent: string; initials: string }) {
         <rect x="130" y="305" width="10" height="60" fill="#ffffff" fillOpacity="0.05" />
         {/* Brand */}
         <text x="150" y="350" textAnchor="middle" fill={accent} fontSize="11" fontWeight="bold" letterSpacing="3">
-          NORTHSTAR
+          FLENT
         </text>
       </svg>
     </div>
@@ -268,7 +261,7 @@ function RamenIllustration({ accent }: { accent: string; initials: string }) {
         <rect x="155" y="195" width="4" height="28" rx="2" fill="#1a1a1a" />
         {/* Brand */}
         <text x="150" y="350" textAnchor="middle" fill={accent} fontSize="12" fontWeight="bold" letterSpacing="3">
-          OKURA
+          THE NOODLE BAR
         </text>
       </svg>
     </div>
@@ -385,13 +378,13 @@ function FashionIllustration({ accent }: { accent: string; initials: string }) {
         {/* Brand label */}
         <rect x="115" y="200" width="70" height="22" rx="2" fill="#2a2a2a" />
         <text x="150" y="215" textAnchor="middle" fill="white" fontSize="8" letterSpacing="2" fontWeight="bold">
-          ATELIER
+          INAARA
         </text>
         {/* Accent edge light */}
         <line x1="80" y1="200" x2="80" y2="290" stroke={accent || "#888"} strokeWidth="1.5" strokeOpacity="0.4" />
         {/* Brand */}
         <text x="150" y="340" textAnchor="middle" fill="#444" fontSize="10" letterSpacing="5">
-          ATELIER NOIR
+          INAARA
         </text>
       </svg>
     </div>
@@ -414,7 +407,7 @@ function SkincareIllustration({ accent }: { accent: string; initials: string }) 
         <rect x="118" y="180" width="64" height="98" rx="6" fill={accent} fillOpacity="0.3" />
         {/* Label */}
         <rect x="122" y="145" width="56" height="60" rx="4" fill="white" fillOpacity="0.08" />
-        <text x="150" y="165" textAnchor="middle" fill="white" fontSize="7" letterSpacing="2" fillOpacity="0.7">LUMEN</text>
+        <text x="150" y="165" textAnchor="middle" fill="white" fontSize="7" letterSpacing="2" fillOpacity="0.7">DECONSTRUCT</text>
         <text x="150" y="178" textAnchor="middle" fill={accent} fontSize="9" fontWeight="bold" letterSpacing="1">RADIANCE</text>
         <text x="150" y="191" textAnchor="middle" fill="white" fontSize="6" fillOpacity="0.5">SERUM 30ml</text>
         {/* Glow aura */}
@@ -426,7 +419,7 @@ function SkincareIllustration({ accent }: { accent: string; initials: string }) 
         <circle cx="215" cy="200" r="4" fill={accent} fillOpacity="0.4" />
         {/* Brand */}
         <text x="150" y="350" textAnchor="middle" fill={accent} fontSize="12" fontWeight="bold" letterSpacing="3">
-          LUMEN SKIN
+          DECONSTRUCT
         </text>
       </svg>
     </div>
@@ -458,7 +451,7 @@ function FitnessIllustration({ accent }: { accent: string; initials: string }) {
         <text x="150" y="125" textAnchor="middle" fill="white" fontSize="11" fillOpacity="0.4" letterSpacing="4">STRENGTH</text>
         {/* Brand */}
         <text x="150" y="350" textAnchor="middle" fill={accent} fontSize="12" fontWeight="bold" letterSpacing="3">
-          VYOM STRENGTH
+          FITPASS
         </text>
       </svg>
     </div>
@@ -492,7 +485,7 @@ function EduIllustration({ accent }: { accent: string; initials: string }) {
         <circle cx="190" cy="87" r="4" fill={accent} />
         {/* Brand */}
         <text x="150" y="340" textAnchor="middle" fill={accent} fontSize="11" fontWeight="bold" letterSpacing="2">
-          INKPATH EDUTECH
+          COMPETISHUN
         </text>
       </svg>
     </div>
@@ -529,7 +522,7 @@ function JewelsIllustration({ accent }: { accent: string; initials: string }) {
         <circle cx="150" cy="120" r="7" fill={accent} fillOpacity="0.6" />
         {/* Brand */}
         <text x="150" y="310" textAnchor="middle" fill={gold} fontSize="10" fontWeight="bold" letterSpacing="4">
-          SAANVI JEWELS
+          SVARAA JEWELS
         </text>
       </svg>
     </div>
