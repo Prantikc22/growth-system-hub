@@ -25,3 +25,24 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - `pnpm --filter @workspace/api-server run dev` — run API server locally
 
 See the `pnpm-workspace` skill for workspace structure, TypeScript setup, and package details.
+
+## Artifacts
+
+### Growth System (`artifacts/growth-system`)
+- **Type**: React + Vite web app (frontend-only, no backend required)
+- **Preview path**: `/`
+- **Description**: Brand marketing/agency website for "Growth System" — a productized brand growth system
+- **Routes**: `/` (home), `/work`, `/work/:slug`, `/services`, `/about`, `/contact`, `/franchise`
+- **Stack**: React 18, react-router-dom, Tailwind CSS v3, shadcn/ui, Inter font
+- **Key features**: Animated hero with word-reveal, magnetic cursor, scroll progress indicator, service configurator with pricing engine, case studies portfolio, marquee animations
+- **Data**: Static data files in `src/data/` (case-studies.ts, testimonials.ts, partnerships.ts)
+- **Styling**: Custom design tokens in `src/index.css`, tailwind.config.ts with brand colors (electric blue #2563EB, growth green)
+
+### API Server (`artifacts/api-server`)
+- **Type**: Express API server
+- **Preview path**: `/api`
+- **Description**: Backend API server (currently minimal — Growth System app is frontend-only)
+
+### Canvas (`artifacts/mockup-sandbox`)
+- **Type**: Design/mockup sandbox
+- **Preview path**: `/__mockup`
