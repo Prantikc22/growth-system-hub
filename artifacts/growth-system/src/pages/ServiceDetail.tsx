@@ -171,7 +171,8 @@ export default function ServiceDetail() {
               ))}
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-ink text-ink-foreground px-6 py-3 font-semibold hover:bg-ink/90 transition-colors mt-2"
+                className="inline-flex items-center gap-2 rounded-full px-6 py-3 font-bold text-sm text-white transition-all hover:opacity-90 mt-2"
+                style={{ background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)", boxShadow: "0 8px 30px rgba(37,99,235,0.35)" }}
               >
                 Talk to us about {svc.title} →
               </Link>

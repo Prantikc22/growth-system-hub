@@ -196,9 +196,14 @@ export function Configurator() {
                   })}
                 </div>
                 <div className="mt-8 flex justify-end">
-                  <Button onClick={() => setStep(2)} disabled={state.services.length === 0} className="rounded-full h-12 px-7 bg-ink text-ink-foreground hover:bg-ink/90 font-semibold">
+                  <button
+                    onClick={() => setStep(2)}
+                    disabled={state.services.length === 0}
+                    className="rounded-full h-12 px-7 font-bold text-sm text-white transition-all hover:opacity-90 disabled:opacity-40"
+                    style={{ background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)", boxShadow: "0 8px 24px rgba(37,99,235,0.4)" }}
+                  >
                     Next →
-                  </Button>
+                  </button>
                 </div>
               </div>
             )}
@@ -348,10 +353,14 @@ export function Configurator() {
                 )}
 
                 <div className="flex justify-between">
-                  <Button onClick={() => setStep(1)} variant="outline" className="rounded-full h-12 px-6">← Back</Button>
-                  <Button onClick={() => setStep(3)} className="rounded-full h-12 px-7 bg-ink text-ink-foreground hover:bg-ink/90 font-semibold">
+                  <button onClick={() => setStep(1)} className="rounded-full h-12 px-6 font-semibold text-sm border border-border bg-background text-foreground hover:border-foreground transition-colors">← Back</button>
+                  <button
+                    onClick={() => setStep(3)}
+                    className="rounded-full h-12 px-7 font-bold text-sm text-white transition-all hover:opacity-90"
+                    style={{ background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)", boxShadow: "0 8px 24px rgba(37,99,235,0.4)" }}
+                  >
                     See estimate →
-                  </Button>
+                  </button>
                 </div>
               </div>
             )}
@@ -381,7 +390,7 @@ export function Configurator() {
                   </div>
                 </div>
                 <div className="flex justify-between pt-2">
-                  <Button onClick={() => setStep(2)} variant="outline" className="rounded-full h-12 px-6">← Back</Button>
+                  <button onClick={() => setStep(2)} className="rounded-full h-12 px-6 font-semibold text-sm border border-border bg-background text-foreground hover:border-foreground transition-colors">← Back</button>
                 </div>
               </div>
             )}
@@ -439,24 +448,26 @@ export function Configurator() {
 
               <div className="mt-6">
                 {useCalendly ? (
-                  <Button
+                  <button
                     onClick={() => {
                       const url = (import.meta as any).env?.VITE_CALENDLY_URL || "https://calendly.com/your-handle/intro";
                       window.open(url, "_blank");
                       toast.success("Opening Calendly…");
                     }}
-                    className="w-full rounded-full h-12 bg-primary hover:bg-primary/90 font-semibold"
+                    className="w-full rounded-full h-12 font-bold text-sm text-white transition-all hover:opacity-90"
+                    style={{ background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)", boxShadow: "0 8px 24px rgba(37,99,235,0.4)" }}
                   >
                     Book a free call →
-                  </Button>
+                  </button>
                 ) : (
-                  <Button
+                  <button
                     onClick={handleGetQuote}
-                    className="w-full rounded-full h-12 bg-accent text-accent-foreground hover:bg-accent/90 font-semibold"
                     disabled={est.total === 0 || submitting}
+                    className="w-full rounded-full h-12 font-bold text-sm text-white transition-all hover:opacity-90 disabled:opacity-40"
+                    style={{ background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)", boxShadow: "0 8px 24px rgba(37,99,235,0.4)" }}
                   >
                     {submitting ? "Submitting…" : "Get Final Quote →"}
-                  </Button>
+                  </button>
                 )}
               </div>
             </div>

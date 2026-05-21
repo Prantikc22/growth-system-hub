@@ -3,23 +3,23 @@ import { smoothScrollTo } from "@/lib/smooth-scroll";
 export function Hero() {
   return (
     <section className="relative overflow-hidden min-h-screen flex flex-col">
-      {/* ── Full-bleed background photo ───────────────────────────────────── */}
+      {/* Full-bleed background photo */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/hero-laptop.png')" }}
       />
-      {/* Dark gradient: heavy on left for text, fades right so photo shows */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#080B12]/95 via-[#080B12]/60 to-[#080B12]/10" />
+      {/* Dark gradient: heavy on left for text, fades right — full coverage on mobile */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#080B12]/98 via-[#080B12]/80 to-[#080B12]/30 md:via-[#080B12]/65 md:to-[#080B12]/15" />
       {/* Top fade */}
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#080B12]/80 to-transparent" />
-      {/* Bottom fade into stats */}
+      {/* Bottom fade */}
       <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#080B12] to-transparent" />
 
-      {/* ── Text — left half ─────────────────────────────────────────────── */}
-      <div className="container-wide flex-1 flex items-center relative z-10 pt-28 md:pt-32 pb-16">
-        <div className="max-w-[50%]">
+      {/* Text content — full width on mobile, half on desktop */}
+      <div className="container-wide flex-1 flex items-center relative z-10 pt-24 md:pt-32 pb-16">
+        <div className="w-full md:max-w-[58%]">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 mb-7">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 mb-6 md:mb-7">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-white/70 text-xs font-medium tracking-wide">
               Not an agency. A growth system.
@@ -27,12 +27,12 @@ export function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="text-[clamp(2.6rem,4.2vw,4.8rem)] font-black leading-[1.05] tracking-tight text-white mb-6">
+          <h1 className="text-[clamp(2.4rem,7vw,4.8rem)] font-black leading-[1.05] tracking-tight text-white mb-5 md:mb-6">
             More visibility.<br />
             More{" "}
             <span
               style={{
-                background: "linear-gradient(90deg, #A855F7 0%, #06B6D4 100%)",
+                background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 60%, #C026D3 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -45,22 +45,26 @@ export function Hero() {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-white/50 text-base md:text-lg leading-relaxed mb-9 max-w-sm">
+          <p className="text-white/55 text-base md:text-lg leading-relaxed mb-8 md:mb-9 max-w-sm md:max-w-sm">
             Everything your brand needs to grow — in one place, at transparent
             pricing, with a team that actually shows up.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-3 mb-10">
+          <div className="flex flex-col sm:flex-row gap-3 mb-10">
             <button
               onClick={() => smoothScrollTo("#configurator")}
-              className="inline-flex items-center gap-2 rounded-full bg-white text-[#080B12] font-bold px-7 py-3.5 text-sm md:text-base hover:bg-white/90 transition-colors"
+              className="inline-flex items-center justify-center gap-2 rounded-full font-bold px-7 py-3.5 text-sm md:text-base text-white transition-all hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
+              style={{
+                background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)",
+                boxShadow: "0 8px 30px rgba(37,99,235,0.45)",
+              }}
             >
               Get Growth Blueprint →
             </button>
             <button
               onClick={() => smoothScrollTo("#work")}
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 text-white font-semibold px-7 py-3.5 text-sm md:text-base hover:border-white/55 hover:bg-white/5 transition-all"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 text-white font-semibold px-7 py-3.5 text-sm md:text-base hover:border-white/55 hover:bg-white/5 transition-all"
             >
               See Case Studies
             </button>
@@ -93,9 +97,9 @@ export function Hero() {
         </div>
       </div>
 
-      {/* ── Stats bar ────────────────────────────────────────────────────── */}
+      {/* Stats bar */}
       <div className="relative z-10">
-        <div className="container-wide py-6 grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div className="container-wide py-6 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
           {STATS.map((s) => (
             <div key={s.label} className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-full border border-white/15 grid place-items-center text-white/45 shrink-0">
@@ -103,9 +107,9 @@ export function Hero() {
               </div>
               <div>
                 {s.value && (
-                  <div className="text-white font-extrabold text-base md:text-lg leading-tight">{s.value}</div>
+                  <div className="text-white font-extrabold text-sm md:text-lg leading-tight">{s.value}</div>
                 )}
-                <div className="text-white/40 text-[11px] leading-snug">{s.label}</div>
+                <div className="text-white/40 text-[10px] md:text-[11px] leading-snug">{s.label}</div>
               </div>
             </div>
           ))}
@@ -115,7 +119,6 @@ export function Hero() {
   );
 }
 
-/* ── Stats ───────────────────────────────────────────────────────────────── */
 const STATS = [
   {
     Icon: () => (

@@ -25,7 +25,11 @@ export function FranchiseStrip() {
           <p className="text-xs uppercase tracking-widest text-ink-foreground/60">Franchise · Partner with us</p>
           <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-ink-foreground mt-2">Run a Remarqd chapter in your city.</h3>
         </div>
-        <Link to="/franchise" className="rounded-full bg-primary text-primary-foreground px-6 py-3 font-semibold hover:bg-primary/90 transition-colors">
+        <Link
+          to="/franchise"
+          className="rounded-full px-6 py-3 font-bold text-sm text-white transition-all hover:opacity-90 shrink-0"
+          style={{ background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)", boxShadow: "0 8px 20px rgba(37,99,235,0.4)" }}
+        >
           Apply to partner →
         </Link>
       </div>

@@ -3,6 +3,8 @@ import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { MarqueeStrip } from "@/components/sections/MarqueeStrip";
 import { ProblemSolution } from "@/components/sections/ProblemSolution";
+import { ProvenResults } from "@/components/sections/ProvenResults";
+import { Partners } from "@/components/sections/Partners";
 import { ServiceRows } from "@/components/sections/ServiceRows";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Configurator } from "@/components/sections/Configurator";
@@ -20,7 +22,9 @@ const Index = () => (
       <Hero />
       <MarqueeStrip />
       <ProblemSolution />
+      <ProvenResults />
       <ServiceRows />
+      <Partners />
       <CaseStudies />
       <Configurator />
       <Testimonials />

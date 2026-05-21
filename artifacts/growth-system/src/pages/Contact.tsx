@@ -95,7 +95,14 @@ export default function Contact() {
                 <div><Label htmlFor="phone">WhatsApp / Phone</Label><Input id="phone" name="phone" type="tel" className="mt-2" placeholder="+91 99999 99999" /></div>
               </div>
               <div><Label htmlFor="message">What are you building?</Label><Textarea id="message" name="message" rows={5} className="mt-2" placeholder="A few lines about your brand and what you need." /></div>
-              <Button type="submit" disabled={busy} className="rounded-full h-12 px-7 bg-ink text-ink-foreground hover:bg-ink/90 font-semibold">{busy ? "Sending…" : "Send message →"}</Button>
+              <button
+                type="submit"
+                disabled={busy}
+                className="rounded-full h-12 px-7 font-bold text-sm text-white transition-all hover:opacity-90 disabled:opacity-60"
+                style={{ background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)", boxShadow: "0 8px 30px rgba(37,99,235,0.35)" }}
+              >
+                {busy ? "Sending…" : "Send message →"}
+              </button>
             </form>
           </Reveal>
         </div>

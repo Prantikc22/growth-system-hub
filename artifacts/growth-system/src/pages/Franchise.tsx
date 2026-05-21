@@ -98,7 +98,14 @@ export default function Franchise() {
               </div>
               <div><Label htmlFor="current">Current work</Label><Textarea id="current" name="current_work" rows={3} className="mt-2" placeholder="What you do today — role, industry, network size." required /></div>
               <div><Label htmlFor="why">Why partner with us?</Label><Textarea id="why" name="why_partner" rows={4} className="mt-2" placeholder="What excites you about the Remarqd model and what you bring to the table." required /></div>
-              <Button type="submit" disabled={busy} className="rounded-full h-12 px-7 bg-ink text-ink-foreground hover:bg-ink/90 font-semibold">{busy ? "Sending…" : "Submit application →"}</Button>
+              <button
+                type="submit"
+                disabled={busy}
+                className="rounded-full h-12 px-7 font-bold text-sm text-white transition-all hover:opacity-90 disabled:opacity-60"
+                style={{ background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)", boxShadow: "0 8px 30px rgba(37,99,235,0.35)" }}
+              >
+                {busy ? "Sending…" : "Submit application →"}
+              </button>
             </form>
           </Reveal>
         </div>

@@ -1,8 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { smoothScrollTo } from "@/lib/smooth-scroll";
+import { X, Menu } from "lucide-react";
 
 const links = [
   { href: "/work", label: "Work" },
@@ -14,6 +14,7 @@ const links = [
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -23,72 +24,116 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => { setOpen(false); }, [pathname]);
+
   const isHome = pathname === "/";
   const dark = isHome && !scrolled;
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 inset-x-0 z-40 transition-all duration-300",
-        scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border"
-          : isHome
-          ? "bg-transparent"
-          : "bg-transparent"
-      )}
-    >
-      <div className="container-wide flex h-16 md:h-20 items-center justify-between">
-        <Link
-          to="/"
-          className="reveal-fade flex items-center gap-2 font-display font-extrabold text-xl tracking-tight"
-          style={{ animationDelay: "100ms" }}
-        >
-          <LogoMark dark={dark} />
-          <span className={cn("transition-colors duration-300", dark ? "text-white" : "text-foreground")}>
-            Remarqd
-          </span>
-        </Link>
-
-        <nav className="hidden md:flex items-center gap-1">
-          {links.map((l, i) => (
-            <Link
-              key={l.href}
-              to={l.href}
-              className={cn(
-                "reveal-up px-4 py-2 text-sm font-medium rounded-full transition-colors duration-300",
-                dark
-                  ? pathname === l.href
-                    ? "text-white"
-                    : "text-white/65 hover:text-white"
-                  : pathname === l.href
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              )}
-              style={{ animationDelay: `${200 + i * 60}ms` }}
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="reveal-right" style={{ animationDelay: "400ms" }}>
-          <Button
-            onClick={() => {
-              if (pathname === "/") smoothScrollTo("#configurator");
-              else window.location.href = "/#configurator";
-            }}
-            className={cn(
-              "rounded-full h-10 md:h-11 px-5 md:px-6 font-semibold transition-all duration-300",
-              dark
-                ? "bg-white text-[#080B12] hover:bg-white/90"
-                : "bg-ink text-ink-foreground hover:bg-ink/90"
-            )}
+    <>
+      <header
+        className={cn(
+          "fixed top-0 inset-x-0 z-40 transition-all duration-300",
+          scrolled || open
+            ? "bg-[#080B12]/95 backdrop-blur-xl border-b border-white/8"
+            : "bg-transparent"
+        )}
+      >
+        <div className="container-wide flex h-16 md:h-20 items-center justify-between">
+          {/* Logo */}
+          <Link
+            to="/"
+            className="reveal-fade flex items-center gap-2 font-display font-extrabold text-xl tracking-tight"
+            style={{ animationDelay: "100ms" }}
           >
-            Get a quote →
-          </Button>
+            <LogoMark dark={dark || open} />
+            <span className={cn("transition-colors duration-300", dark || open ? "text-white" : "text-foreground")}>
+              Remarqd
+            </span>
+          </Link>
+
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-1">
+            {links.map((l, i) => (
+              <Link
+                key={l.href}
+                to={l.href}
+                className={cn(
+                  "reveal-up px-4 py-2 text-sm font-medium rounded-full transition-colors duration-300",
+                  dark
+                    ? pathname === l.href
+                      ? "text-white"
+                      : "text-white/65 hover:text-white"
+                    : pathname === l.href
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+                style={{ animationDelay: `${200 + i * 60}ms` }}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Desktop CTA */}
+          <div className="hidden md:flex reveal-right items-center gap-3" style={{ animationDelay: "400ms" }}>
+            <button
+              onClick={() => {
+                if (pathname === "/") smoothScrollTo("#configurator");
+                else window.location.href = "/#configurator";
+              }}
+              className="rounded-full h-10 md:h-11 px-5 md:px-6 font-semibold text-sm text-white transition-all duration-300"
+              style={{ background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)", boxShadow: "0 4px 20px rgba(37,99,235,0.4)" }}
+            >
+              Get a quote →
+            </button>
+          </div>
+
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setOpen((o) => !o)}
+            className={cn("md:hidden p-2 rounded-lg transition-colors", dark || open ? "text-white" : "text-foreground")}
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
-      </div>
-    </header>
+
+        {/* Mobile menu */}
+        <div className={cn(
+          "md:hidden overflow-hidden transition-all duration-300 ease-out",
+          open ? "max-h-[480px] opacity-100" : "max-h-0 opacity-0"
+        )}>
+          <div className="px-6 py-4 border-t border-white/8 flex flex-col gap-1">
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                to={l.href}
+                className={cn(
+                  "block px-4 py-3 rounded-xl text-base font-semibold transition-colors",
+                  pathname === l.href
+                    ? "text-white bg-white/10"
+                    : "text-white/70 hover:text-white hover:bg-white/5"
+                )}
+              >
+                {l.label}
+              </Link>
+            ))}
+            <button
+              onClick={() => {
+                setOpen(false);
+                if (pathname === "/") smoothScrollTo("#configurator");
+                else window.location.href = "/#configurator";
+              }}
+              className="mt-3 w-full rounded-full py-3.5 font-bold text-white text-sm"
+              style={{ background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)", boxShadow: "0 4px 20px rgba(37,99,235,0.4)" }}
+            >
+              Get a quote →
+            </button>
+          </div>
+        </div>
+      </header>
+    </>
   );
 }
 
