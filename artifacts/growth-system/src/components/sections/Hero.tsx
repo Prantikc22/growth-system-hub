@@ -51,8 +51,8 @@ export function Hero() {
 
           {/* Subtitle — DM Sans */}
           <p className="text-white/55 text-base md:text-lg leading-relaxed mb-8 max-w-sm font-sans">
-            Everything your brand needs to grow — in one place, at transparent pricing,
-            with a team that actually shows up.
+            AI-powered strategy, performance ads, social, content and tech —
+            in one place, at transparent pricing, with a team that actually shows up.
           </p>
 
           {/* CTAs */}
@@ -94,18 +94,18 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Client logos strip at the bottom */}
-      <div className="relative z-10 border-t border-white/8">
-        <div className="py-5 md:py-6">
-          <p className="text-center text-[10px] uppercase tracking-[0.2em] text-white/25 mb-4 font-ui">Trusted by</p>
-          <Marquee duration={40} gap={56}>
+      {/* Client logos strip — fades in from the hero */}
+      <div className="relative z-10" style={{ background: "linear-gradient(180deg, transparent 0%, rgba(8,11,18,0.85) 30%, #080B12 100%)" }}>
+        <div className="py-6 md:py-7">
+          <p className="text-center text-[10px] uppercase tracking-[0.2em] text-white/20 mb-5 font-ui" style={{ fontFamily: "'Syne',sans-serif" }}>Trusted by</p>
+          <Marquee duration={45} gap={64}>
             {CLIENT_LOGOS.map((logo) => (
-              <div key={logo.alt} className="flex items-center">
+              <div key={logo.alt} className="flex items-center justify-center" style={{ height: 32 }}>
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  style={{ width: logo.w, height: logo.h, objectFit: "contain", filter: "brightness(0) invert(1)" }}
-                  className="opacity-35 hover:opacity-60 transition-opacity duration-300"
+                  style={{ height: 28, width: "auto", maxWidth: 120, objectFit: "contain", filter: "brightness(0) invert(1)" }}
+                  className="opacity-30 hover:opacity-55 transition-opacity duration-300"
                   draggable={false}
                 />
               </div>

@@ -107,7 +107,7 @@ export function Configurator() {
             </div>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">We're on it.</h2>
+          <h2 className="font-serif text-4xl md:text-5xl font-normal tracking-tight mb-4">We're on it.</h2>
           <p className="text-lg text-muted-foreground max-w-md mx-auto mb-10">
             Your quote is with us. Expect a response from our team within <strong>one working day</strong>. Check your inbox — we've sent you a confirmation.
           </p>
@@ -138,14 +138,14 @@ export function Configurator() {
               href={`https://wa.me/919073559000?text=${encodeURIComponent("Hi, I just submitted a quote on remarqd.com. Looking forward to connecting!")}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] text-white px-7 py-3.5 font-semibold hover:bg-[#20bd5a] transition-colors"
+              className="btn-gradient rounded-full px-7 py-3.5 text-sm inline-flex items-center justify-center gap-2"
             >
               <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
               Chat on WhatsApp
             </a>
             <Link
               to="/work"
-              className="inline-flex items-center justify-center rounded-full border border-border px-7 py-3.5 font-semibold text-foreground/70 hover:text-foreground hover:border-foreground transition-colors"
+              className="btn-outline-dark rounded-full border border-border px-7 py-3.5 text-sm inline-flex items-center justify-center font-semibold text-foreground/70 hover:text-foreground hover:border-foreground"
             >
               See our case studies →
             </Link>
@@ -158,9 +158,9 @@ export function Configurator() {
   return (
     <section id="configurator" className="py-24 md:py-32 container-wide">
       <Reveal variant="up" className="text-center max-w-2xl mx-auto mb-14">
-        <p className="pill mx-auto mb-4">Build your plan</p>
+        <p className="pill mx-auto mb-5">Build your plan</p>
         <h2 className="heading-section">Estimate in 60 seconds.</h2>
-        <p className="mt-4 text-lg text-muted-foreground">Pick what you need. We'll show you transparent pricing instantly. No sales call required to see the number.</p>
+        <p className="mt-4 text-lg text-muted-foreground font-sans">Pick what you need. We'll show you transparent pricing instantly. No sales call required to see the number.</p>
       </Reveal>
 
       <div className="grid lg:grid-cols-12 gap-8">
@@ -199,8 +199,7 @@ export function Configurator() {
                   <button
                     onClick={() => setStep(2)}
                     disabled={state.services.length === 0}
-                    className="rounded-full h-12 px-7 font-bold text-sm text-white transition-all hover:opacity-90 disabled:opacity-40"
-                    style={{ background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)", boxShadow: "0 8px 24px rgba(37,99,235,0.4)" }}
+                    className="btn-gradient rounded-full h-12 px-7 text-sm disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none"
                   >
                     Next →
                   </button>
@@ -353,12 +352,8 @@ export function Configurator() {
                 )}
 
                 <div className="flex justify-between">
-                  <button onClick={() => setStep(1)} className="rounded-full h-12 px-6 font-semibold text-sm border border-border bg-background text-foreground hover:border-foreground transition-colors">← Back</button>
-                  <button
-                    onClick={() => setStep(3)}
-                    className="rounded-full h-12 px-7 font-bold text-sm text-white transition-all hover:opacity-90"
-                    style={{ background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)", boxShadow: "0 8px 24px rgba(37,99,235,0.4)" }}
-                  >
+                  <button onClick={() => setStep(1)} className="btn-outline-dark rounded-full h-12 px-6 text-sm border border-border bg-background text-foreground hover:border-foreground">← Back</button>
+                  <button onClick={() => setStep(3)} className="btn-gradient rounded-full h-12 px-7 text-sm">
                     See estimate →
                   </button>
                 </div>
@@ -390,7 +385,7 @@ export function Configurator() {
                   </div>
                 </div>
                 <div className="flex justify-between pt-2">
-                  <button onClick={() => setStep(2)} className="rounded-full h-12 px-6 font-semibold text-sm border border-border bg-background text-foreground hover:border-foreground transition-colors">← Back</button>
+                  <button onClick={() => setStep(2)} className="btn-outline-dark rounded-full h-12 px-6 text-sm border border-border bg-background text-foreground hover:border-foreground">← Back</button>
                 </div>
               </div>
             )}
@@ -454,8 +449,7 @@ export function Configurator() {
                       window.open(url, "_blank");
                       toast.success("Opening Calendly…");
                     }}
-                    className="w-full rounded-full h-12 font-bold text-sm text-white transition-all hover:opacity-90"
-                    style={{ background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)", boxShadow: "0 8px 24px rgba(37,99,235,0.4)" }}
+                    className="btn-gradient w-full rounded-full h-12 text-sm"
                   >
                     Book a free call →
                   </button>
@@ -463,8 +457,7 @@ export function Configurator() {
                   <button
                     onClick={handleGetQuote}
                     disabled={est.total === 0 || submitting}
-                    className="w-full rounded-full h-12 font-bold text-sm text-white transition-all hover:opacity-90 disabled:opacity-40"
-                    style={{ background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)", boxShadow: "0 8px 24px rgba(37,99,235,0.4)" }}
+                    className="btn-gradient w-full rounded-full h-12 text-sm disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none"
                   >
                     {submitting ? "Submitting…" : "Get Final Quote →"}
                   </button>

@@ -32,11 +32,11 @@ const EMBEDDED_TESTIMONIALS = [
 
 function MetricBadge({ m }: { m: { value: number; suffix: string; prefix?: string; label: string } }) {
   return (
-    <div className="rounded-xl bg-background/90 backdrop-blur-sm border border-white/10 p-3">
+    <div className="rounded-xl bg-black/65 backdrop-blur-sm border border-white/12 p-3">
       <div className="text-base md:text-lg font-serif font-normal tracking-tight text-white">
         <CountUp to={m.value} prefix={m.prefix} suffix={m.suffix} />
       </div>
-      <div className="text-[10px] text-white/50 uppercase tracking-wider mt-0.5 leading-tight font-ui" style={{ fontFamily: "'Syne',sans-serif", fontWeight: 600 }}>{m.label}</div>
+      <div className="text-[10px] text-white/55 uppercase tracking-wider mt-0.5 leading-tight font-ui" style={{ fontFamily: "'Syne',sans-serif", fontWeight: 600 }}>{m.label}</div>
     </div>
   );
 }

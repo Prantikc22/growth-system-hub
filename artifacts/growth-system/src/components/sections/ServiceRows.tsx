@@ -12,12 +12,12 @@ const SERVICES = [
     pitch: "Meta, Google & YouTube with a daily optimisation cadence — not a monthly report. Creative testing is built in from day one.",
     color: "#2563EB",
     bullets: [
-      { icon: "◈", label: "Meta Ads", sub: "Funnel architecture, creative testing, ROAS-first" },
-      { icon: "◈", label: "Google Ads", sub: "Search, Shopping, Display & YouTube" },
-      { icon: "◈", label: "SEO & AI Search", sub: "Organic rankings + LLM/AI Overview visibility" },
-      { icon: "◈", label: "WhatsApp Campaigns", sub: "Broadcast flows + retargeting sequences" },
-      { icon: "◈", label: "Weekly outcomes review", sub: "No monthly PDFs — real-time accountability" },
-      { icon: "◈", label: "Attribution & P&L breakdown", sub: "Know exactly what drives revenue" },
+      { label: "Meta Ads", sub: "Funnel architecture, creative testing, ROAS-first" },
+      { label: "Google Ads", sub: "Search, Shopping, Display & YouTube" },
+      { label: "SEO & AI Search", sub: "Organic rankings + LLM/AI Overview visibility" },
+      { label: "WhatsApp Campaigns", sub: "Broadcast flows + retargeting sequences" },
+      { label: "Weekly outcomes review", sub: "No monthly PDFs — real-time accountability" },
+      { label: "Attribution & P&L", sub: "Know exactly what drives revenue" },
     ],
   },
   {
@@ -28,11 +28,11 @@ const SERVICES = [
     pitch: "Brand-led posting, reels and community built around your voice, not a template. We run it like a media company.",
     color: "#A8336E",
     bullets: [
-      { icon: "◈", label: "Channel-specific content calendar", sub: "Instagram, LinkedIn, YouTube" },
-      { icon: "◈", label: "Reels production engine", sub: "Scripted, shot, edited — in-house" },
-      { icon: "◈", label: "Community management", sub: "DMs, comments, and brand voice" },
-      { icon: "◈", label: "Influencer outreach", sub: "Collaboration briefs and negotiation" },
-      { icon: "◈", label: "Monthly brand reporting", sub: "Audience insights and benchmark tracking" },
+      { label: "Content calendar", sub: "Instagram, LinkedIn, YouTube — channel-specific" },
+      { label: "Reels production engine", sub: "Scripted, shot, edited — in-house" },
+      { label: "Community management", sub: "DMs, comments, and brand voice" },
+      { label: "Influencer outreach", sub: "Collaboration briefs and negotiation" },
+      { label: "Monthly brand reporting", sub: "Audience insights and benchmark tracking" },
     ],
   },
   {
@@ -43,11 +43,11 @@ const SERVICES = [
     pitch: "From brand identity to long-form video — everything produced without a third-party agency in the loop.",
     color: "#0F766E",
     bullets: [
-      { icon: "◈", label: "Social creatives (static + animated)", sub: "Feed posts, stories, ads" },
-      { icon: "◈", label: "Reels & short-form video", sub: "Full production — script to export" },
-      { icon: "◈", label: "Blog & SEO content", sub: "Long-form that ranks and converts" },
-      { icon: "◈", label: "Ad copywriting", sub: "For Google, Meta, email, and WhatsApp" },
-      { icon: "◈", label: "Brand identity & guidelines", sub: "Logo, palette, typography, voice" },
+      { label: "Social creatives (static + animated)", sub: "Feed posts, stories, ads" },
+      { label: "Reels & short-form video", sub: "Full production — script to export" },
+      { label: "Blog & SEO content", sub: "Long-form that ranks and converts" },
+      { label: "Ad copywriting", sub: "For Google, Meta, email, and WhatsApp" },
+      { label: "Brand identity & guidelines", sub: "Logo, palette, typography, voice" },
     ],
   },
   {
@@ -57,15 +57,14 @@ const SERVICES = [
     tagline: "Fast, measurable digital products — owned by you.",
     pitch: "Websites, Shopify stores, apps, AI chatbots and WhatsApp flows. Scoped, built, and handed over.",
     color: "#7C3AED",
-    highlight: true,
     bullets: [
-      { icon: "◈", label: "High-converting websites", sub: "React, Next.js, Webflow — performance-first" },
-      { icon: "◈", label: "Shopify & ecommerce", sub: "Custom builds, apps, headless" },
-      { icon: "◈", label: "iOS & Android apps", sub: "Native and cross-platform development" },
-      { icon: "◈", label: "AI Chatbots", sub: "WhatsApp, website, Instagram DM — GPT-powered" },
-      { icon: "◈", label: "WhatsApp Automation", sub: "Flows, broadcasts, lead routing, booking" },
-      { icon: "◈", label: "CRM & API integrations", sub: "Zoho, HubSpot, Shopify, custom" },
-      { icon: "◈", label: "Analytics setup", sub: "GA4, Mixpanel, Hotjar — proper tracking" },
+      { label: "High-converting websites", sub: "React, Next.js, Webflow — performance-first" },
+      { label: "Shopify & ecommerce", sub: "Custom builds, apps, headless" },
+      { label: "iOS & Android apps", sub: "Native and cross-platform development" },
+      { label: "AI Chatbots", sub: "WhatsApp, website, Instagram DM — GPT-powered" },
+      { label: "WhatsApp Automation", sub: "Flows, broadcasts, lead routing, booking" },
+      { label: "CRM & API integrations", sub: "Zoho, HubSpot, Shopify, custom" },
+      { label: "Analytics setup", sub: "GA4, Mixpanel, Hotjar — proper tracking" },
     ],
   },
   {
@@ -76,19 +75,17 @@ const SERVICES = [
     pitch: "For founders and creators who want a lasting personal brand. We handle positioning, content, PR and brand deals.",
     color: "#DC2626",
     bullets: [
-      { icon: "◈", label: "Founder positioning & narrative", sub: "What you stand for and how you say it" },
-      { icon: "◈", label: "Weekly content production", sub: "LinkedIn, Instagram, YouTube — all channels" },
-      { icon: "◈", label: "PR & media placements", sub: "Podcasts, press, speaking slots" },
-      { icon: "◈", label: "Brand deals & negotiations", sub: "Outreach, terms, and contract review" },
-      { icon: "◈", label: "Talent management", sub: "For eligible creators and executives" },
+      { label: "Founder positioning & narrative", sub: "What you stand for and how you say it" },
+      { label: "Weekly content production", sub: "LinkedIn, Instagram, YouTube — all channels" },
+      { label: "PR & media placements", sub: "Podcasts, press, speaking slots" },
+      { label: "Brand deals & negotiations", sub: "Outreach, terms, and contract review" },
+      { label: "Talent management", sub: "For eligible creators and executives" },
     ],
   },
 ];
 
 export function ServiceRows() {
   const [active, setActive] = useState<number | null>(null);
-
-  const toggle = (i: number) => setActive(active === i ? null : i);
 
   return (
     <section id="services" className="py-24 md:py-32 bg-white">
@@ -112,26 +109,21 @@ export function ServiceRows() {
           {SERVICES.map((s, i) => {
             const isOpen = active === i;
             return (
-              <div key={s.n} className={cn("service-row relative", isOpen && "is-open")}>
+              <div
+                key={s.n}
+                className={cn("service-row relative", isOpen && "is-open")}
+                onMouseEnter={() => setActive(i)}
+                onMouseLeave={() => setActive(null)}
+              >
                 <div className="absolute left-0 top-0 bottom-0 w-[3px] accent-bar" />
 
-                {/* Header row — clickable */}
-                <button
-                  onClick={() => toggle(i)}
-                  className="w-full text-left grid md:grid-cols-12 gap-4 py-7 md:py-8 px-4 md:px-6 items-center"
-                >
+                {/* Header row */}
+                <div className="w-full text-left grid md:grid-cols-12 gap-4 py-7 md:py-8 px-4 md:px-6 items-center cursor-default">
                   <div className="md:col-span-1 hidden md:block">
                     <span className="text-sm font-mono text-muted-foreground">{s.n}</span>
                   </div>
                   <div className="md:col-span-4">
-                    <div className="flex items-center gap-3">
-                      {s.highlight && (
-                        <span className="hidden md:inline-flex text-[10px] font-ui uppercase tracking-widest px-2 py-0.5 rounded-full text-white" style={{ background: s.color, fontFamily: "'Syne',sans-serif", fontWeight: 700 }}>
-                          Popular
-                        </span>
-                      )}
-                      <h3 className="font-serif text-xl md:text-2xl font-normal leading-snug">{s.title}</h3>
-                    </div>
+                    <h3 className="font-serif text-xl md:text-2xl font-normal leading-snug">{s.title}</h3>
                   </div>
                   <div className="md:col-span-5 text-muted-foreground text-sm md:text-base font-sans hidden md:block">{s.tagline}</div>
                   <div className="md:col-span-2 flex justify-end items-center gap-3 md:gap-4">
@@ -139,7 +131,6 @@ export function ServiceRows() {
                       to={`/services/${s.slug}`}
                       className="hidden md:block text-xs font-ui uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors"
                       style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700 }}
-                      onClick={(e) => e.stopPropagation()}
                     >
                       Details
                     </Link>
@@ -152,7 +143,7 @@ export function ServiceRows() {
                       </svg>
                     </span>
                   </div>
-                </button>
+                </div>
 
                 {/* Expanded panel */}
                 <div
@@ -166,10 +157,10 @@ export function ServiceRows() {
                         {s.bullets.map((b) => (
                           <div key={b.label} className="rounded-xl border border-border bg-background p-4 hover:border-foreground/20 transition-colors">
                             <div className="flex items-center gap-2 mb-1">
-                              <span className="text-xs" style={{ color: s.color }}>●</span>
+                              <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: s.color }} />
                               <span className="font-ui text-sm font-semibold" style={{ fontFamily: "'Syne',sans-serif" }}>{b.label}</span>
                             </div>
-                            <p className="text-xs text-muted-foreground font-sans pl-4">{b.sub}</p>
+                            <p className="text-xs text-muted-foreground font-sans pl-3.5">{b.sub}</p>
                           </div>
                         ))}
                       </div>
