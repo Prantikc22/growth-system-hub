@@ -1,8 +1,7 @@
 import { smoothScrollTo } from "@/lib/smooth-scroll";
 import { Marquee } from "@/components/Marquee";
+import { useEffect, useRef, useState } from "react";
 
-// filter: "invert" → works for logos with transparent bg (dark or white marks)
-// filter: "screen"  → use mix-blend-mode:screen for logos with solid dark/black bg
 const CLIENT_LOGOS: { src: string; alt: string; mode?: "screen" }[] = [
   { src: "/clients/bodycraft.webp",   alt: "Bodycraft" },
   { src: "/clients/cosmic.webp",      alt: "Cosmic" },
@@ -19,29 +18,188 @@ const CLIENT_LOGOS: { src: string; alt: string; mode?: "screen" }[] = [
   { src: "/clients/flank.png",        alt: "Flank",       mode: "screen" },
 ];
 
+function CountUp({ to, duration = 1800 }: { to: number; duration?: number }) {
+  const [val, setVal] = useState(0);
+  const started = useRef(false);
+  const elRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !started.current) {
+        started.current = true;
+        const start = performance.now();
+        const tick = (now: number) => {
+          const t = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - t, 3);
+          setVal(Math.round(eased * to));
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
+    }, { threshold: 0.3 });
+    if (elRef.current) observer.observe(elRef.current);
+    return () => observer.disconnect();
+  }, [to, duration]);
+
+  return <span ref={elRef}>{val.toLocaleString("en-IN")}</span>;
+}
+
+function SparkLine() {
+  return (
+    <svg width="80" height="28" viewBox="0 0 80 28" fill="none" className="overflow-visible">
+      <path
+        d="M2 24 L14 18 L24 20 L36 12 L46 15 L56 7 L68 9 L78 3"
+        stroke="url(#sparkGrad)"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+        className="hero-sparkline"
+      />
+      <defs>
+        <linearGradient id="sparkGrad" x1="0" y1="0" x2="80" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#93c5fd" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#c4b5fd" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+}
+
 export function Hero() {
+  const bgRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const dashLayerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let rafId: number;
+    const target = { x: 0, y: 0 };
+    const current = { x: 0, y: 0 };
+
+    const handleMove = (e: MouseEvent) => {
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      target.x = (e.clientX - cx) / cx;
+      target.y = (e.clientY - cy) / cy;
+    };
+
+    const animate = () => {
+      current.x += (target.x - current.x) * 0.055;
+      current.y += (target.y - current.y) * 0.055;
+      const x = current.x;
+      const y = current.y;
+
+      if (bgRef.current)
+        bgRef.current.style.transform = `translate(${x * 10}px, ${y * 6}px) scale(1.05)`;
+      if (glowRef.current)
+        glowRef.current.style.transform = `translate(${x * 28}px, ${y * 20}px)`;
+      if (textRef.current)
+        textRef.current.style.transform = `translate(${x * -4}px, ${y * -3}px)`;
+      if (dashLayerRef.current)
+        dashLayerRef.current.style.transform = `translate(${x * 14}px, ${y * 9}px)`;
+
+      rafId = requestAnimationFrame(animate);
+    };
+
+    animate();
+    window.addEventListener("mousemove", handleMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", handleMove);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
     <section className="relative overflow-hidden min-h-screen flex flex-col">
-      {/* Background */}
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/hero-laptop.png')" }} />
-      {/* Mobile: full dark overlay for readability */}
+
+      {/* ── Background image layer — parallax depth 1 ── */}
+      <div
+        ref={bgRef}
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
+        style={{ backgroundImage: "url('/hero-laptop.png')" }}
+      />
+
+      {/* ── Ambient glow orb — parallax depth 2 ── */}
+      <div
+        ref={glowRef}
+        className="absolute will-change-transform hero-glow-orb"
+        style={{ top: "10%", right: "15%", width: 600, height: 600, pointerEvents: "none" }}
+      />
+
+      {/* Mobile overlay */}
       <div className="absolute inset-0 bg-[#080B12]/90 md:hidden" />
-      {/* Desktop: directional gradient */}
+      {/* Desktop gradient */}
       <div className="absolute inset-0 hidden md:block bg-gradient-to-r from-[#080B12]/98 via-[#080B12]/82 to-[#080B12]/10" />
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#080B12]/80 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#080B12] to-transparent" />
 
-      {/* Main content */}
-      <div className="container-wide flex-1 flex items-center relative z-10 pt-24 md:pt-32 pb-12">
-        <div className="w-full md:max-w-[60%]">
+      {/* ── Floating dashboard overlay — parallax depth 3 (desktop only) ── */}
+      <div
+        ref={dashLayerRef}
+        className="absolute inset-0 hidden md:block will-change-transform"
+        style={{ pointerEvents: "none", zIndex: 5 }}
+      >
+        {/* ROAS card */}
+        <div
+          className="absolute rounded-2xl border border-white/10 bg-[#0d1120]/70 backdrop-blur-md px-4 py-3 shadow-xl"
+          style={{ top: "18%", right: "6%", minWidth: 120 }}
+        >
+          <p className="text-[9px] font-semibold uppercase tracking-widest text-white/35 mb-1">ROAS</p>
+          <div className="flex items-end gap-1">
+            <span className="text-2xl font-extrabold tabular-nums text-white leading-none">8.1</span>
+            <span className="text-sm font-semibold text-white/50 mb-0.5">×</span>
+          </div>
+          <div className="flex items-center gap-1.5 mt-1.5">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
+            </span>
+            <span className="text-[9px] text-emerald-400 font-semibold">+78.6%</span>
+          </div>
+        </div>
+
+        {/* Revenue card with count-up */}
+        <div
+          className="absolute rounded-2xl border border-white/10 bg-[#0d1120]/70 backdrop-blur-md px-4 py-3 shadow-xl"
+          style={{ top: "36%", right: "3%", minWidth: 160 }}
+        >
+          <p className="text-[9px] font-semibold uppercase tracking-widest text-white/35 mb-1">Revenue Generated</p>
+          <p className="text-lg font-extrabold tabular-nums text-white leading-none">
+            ₹<CountUp to={321452} duration={2200} />
+          </p>
+          <div className="mt-2">
+            <SparkLine />
+          </div>
+        </div>
+
+        {/* CTR card */}
+        <div
+          className="absolute rounded-2xl border border-white/10 bg-[#0d1120]/70 backdrop-blur-md px-3.5 py-2.5 shadow-xl"
+          style={{ top: "57%", right: "10%", minWidth: 100 }}
+        >
+          <p className="text-[9px] font-semibold uppercase tracking-widest text-white/35 mb-1">CTR</p>
+          <p className="text-lg font-extrabold text-white leading-none">2.45%</p>
+          {/* Mini progress bar */}
+          <div className="mt-2 h-1 w-full rounded-full bg-white/10 overflow-hidden">
+            <div className="h-full rounded-full bg-gradient-to-r from-blue-400 to-violet-400 hero-progress-bar" />
+          </div>
+        </div>
+      </div>
+
+      {/* ── Main text content — parallax depth 4 ── */}
+      <div className="container-wide flex-1 flex items-center relative pt-24 md:pt-32 pb-12" style={{ zIndex: 10 }}>
+        <div ref={textRef} className="w-full md:max-w-[60%] will-change-transform">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 mb-6 md:mb-8"
-            style={{ fontFamily: "'Syne', sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", color: "rgba(255,255,255,0.6)", textTransform: "uppercase" }}>
+          <div
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 mb-6 md:mb-8"
+            style={{ fontFamily: "'Syne', sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", color: "rgba(255,255,255,0.6)", textTransform: "uppercase" }}
+          >
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             Not an agency. A growth system.
           </div>
 
-          {/* Headline — Instrument Serif */}
+          {/* Headline */}
           <h1 className="font-serif text-[clamp(3rem,8vw,5.5rem)] font-normal leading-[0.98] tracking-tight text-white mb-6 md:mb-7">
             More{" "}
             <em
@@ -61,7 +219,7 @@ export function Hero() {
             One team.
           </h1>
 
-          {/* Subtitle — DM Sans */}
+          {/* Subtitle */}
           <p className="text-white/55 text-base md:text-lg leading-relaxed mb-8 max-w-sm font-sans">
             AI-powered strategy, performance ads, social, content and tech —
             in one place, at transparent pricing, with a team that actually shows up.
@@ -69,12 +227,15 @@ export function Hero() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3 mb-10">
-            <button
-              onClick={() => smoothScrollTo("#configurator")}
-              className="btn-gradient inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm"
-            >
-              Get Growth Blueprint →
-            </button>
+            {/* Animated border wrapper */}
+            <div className="hero-cta-ring rounded-full self-start sm:self-auto">
+              <button
+                onClick={() => smoothScrollTo("#configurator")}
+                className="btn-gradient inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm relative z-10"
+              >
+                Get Growth Blueprint →
+              </button>
+            </div>
             <button
               onClick={() => smoothScrollTo("#work")}
               className="btn-outline-dark inline-flex items-center justify-center rounded-full border border-white/30 text-white px-7 py-3.5 text-sm hover:bg-white/8 hover:border-white/50"
@@ -106,8 +267,8 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Client logos strip — seamless marquee */}
-      <div className="relative z-10" style={{ background: "linear-gradient(180deg, transparent 0%, rgba(8,11,18,0.85) 30%, #080B12 100%)" }}>
+      {/* Client logos strip */}
+      <div className="relative" style={{ zIndex: 10, background: "linear-gradient(180deg, transparent 0%, rgba(8,11,18,0.85) 30%, #080B12 100%)" }}>
         <div className="py-6 md:py-7">
           <p className="text-center text-[10px] uppercase tracking-[0.2em] text-white/20 mb-5" style={{ fontFamily: "'Syne',sans-serif" }}>Trusted by</p>
           <Marquee duration={60} gap={72}>
