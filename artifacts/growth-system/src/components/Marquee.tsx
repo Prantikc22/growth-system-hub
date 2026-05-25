@@ -7,7 +7,7 @@ export function Marquee({
   return (
     <div
       className={cn("marquee", reverse && "reverse", className)}
-      style={{ ["--marquee-duration" as any]: `${duration}s`, gap }}
+      style={{ ["--marquee-duration" as any]: `${duration}s`, ["--marquee-gap" as any]: `${gap}px`, gap }}
     >
       <div className="marquee-track" style={{ gap }}>{children}</div>
       <div className="marquee-track" aria-hidden style={{ gap }}>{children}</div>

@@ -1,13 +1,22 @@
 import { smoothScrollTo } from "@/lib/smooth-scroll";
 import { Marquee } from "@/components/Marquee";
 
-const CLIENT_LOGOS = [
-  { src: "/clients/82e.webp",       alt: "82°E",        w: 160, h: 44 },
-  { src: "/clients/bodycraft.webp", alt: "Bodycraft",   w: 120, h: 34 },
-  { src: "/clients/cosmic.webp",    alt: "Cosmic",      w: 110, h: 34 },
-  { src: "/clients/karigari.png",   alt: "Karigari",    w: 200, h: 48 },
-  { src: "/clients/chai-point.png", alt: "Chai Point",  w: 96,  h: 34 },
-  { src: "/clients/sarada.png",     alt: "Sarada",      w: 110, h: 34 },
+// filter: "invert" → works for logos with transparent bg (dark or white marks)
+// filter: "screen"  → use mix-blend-mode:screen for logos with solid dark/black bg
+const CLIENT_LOGOS: { src: string; alt: string; mode?: "screen" }[] = [
+  { src: "/clients/bodycraft.webp",   alt: "Bodycraft" },
+  { src: "/clients/cosmic.webp",      alt: "Cosmic" },
+  { src: "/clients/karigari.png",     alt: "Karigari" },
+  { src: "/clients/chai-point.png",   alt: "Chai Point" },
+  { src: "/clients/sarada.png",       alt: "Sarada Robotech" },
+  { src: "/clients/dailyobjects.png", alt: "Daily Objects" },
+  { src: "/clients/tott.png",         alt: "TOTT" },
+  { src: "/clients/svaraa.png",       alt: "Svaraa" },
+  { src: "/clients/oliva.png",        alt: "Oliva Clinic" },
+  { src: "/clients/chaikaapi.png",    alt: "Chai Kaapi", mode: "screen" },
+  { src: "/clients/on.jpg",           alt: "On Running",  mode: "screen" },
+  { src: "/clients/kalyani.png",      alt: "Kalyani Packaging" },
+  { src: "/clients/flank.png",        alt: "Flank",       mode: "screen" },
 ];
 
 export function Hero() {
@@ -97,19 +106,27 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Client logos strip — fades in from the hero */}
+      {/* Client logos strip — seamless marquee */}
       <div className="relative z-10" style={{ background: "linear-gradient(180deg, transparent 0%, rgba(8,11,18,0.85) 30%, #080B12 100%)" }}>
         <div className="py-6 md:py-7">
-          <p className="text-center text-[10px] uppercase tracking-[0.2em] text-white/20 mb-5 font-ui" style={{ fontFamily: "'Syne',sans-serif" }}>Trusted by</p>
-          <Marquee duration={45} gap={64}>
+          <p className="text-center text-[10px] uppercase tracking-[0.2em] text-white/20 mb-5" style={{ fontFamily: "'Syne',sans-serif" }}>Trusted by</p>
+          <Marquee duration={50} gap={56}>
             {CLIENT_LOGOS.map((logo) => (
-              <div key={logo.alt} className="flex items-center justify-center" style={{ height: 32 }}>
+              <div key={logo.alt} className="flex items-center justify-center shrink-0" style={{ height: 32 }}>
                 <img
                   src={logo.src}
                   alt={logo.alt}
-                  style={{ height: 28, width: "auto", maxWidth: 120, objectFit: "contain", filter: "brightness(0) invert(1)" }}
-                  className="opacity-30 hover:opacity-55 transition-opacity duration-300"
                   draggable={false}
+                  className="opacity-35 hover:opacity-60 transition-opacity duration-300"
+                  style={{
+                    height: 26,
+                    width: "auto",
+                    maxWidth: 110,
+                    objectFit: "contain",
+                    ...(logo.mode === "screen"
+                      ? { mixBlendMode: "screen", filter: "saturate(0) brightness(2)" }
+                      : { filter: "brightness(0) invert(1)" }),
+                  }}
                 />
               </div>
             ))}

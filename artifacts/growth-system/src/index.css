@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body { overflow-x: hidden; max-width: 100vw; }
+
 /* ============================================================
    GROWTH SYSTEM — Design tokens
    Instrument Serif · Syne · DM Sans
@@ -253,14 +255,13 @@
     display: flex;
     overflow: hidden;
     user-select: none;
-    gap: 3rem;
   }
   .marquee-track {
     display: flex;
-    gap: 3rem;
     flex-shrink: 0;
     min-width: 100%;
     animation: marquee-l var(--marquee-duration, 30s) linear infinite;
+    will-change: transform;
   }
   .marquee.reverse .marquee-track { animation-name: marquee-r; }
   .marquee:hover .marquee-track { animation-play-state: paused; }
@@ -331,8 +332,8 @@
 @keyframes fade-in { to { opacity: 1; } }
 @keyframes reveal-up { to { opacity: 1; transform: none; } }
 @keyframes reveal-right { to { opacity: 1; transform: none; } }
-@keyframes marquee-l { to { transform: translateX(calc(-100% - 3rem)); } }
-@keyframes marquee-r { from { transform: translateX(calc(-100% - 3rem)); } to { transform: none; } }
+@keyframes marquee-l { to { transform: translateX(calc(-100% - var(--marquee-gap, 48px))); } }
+@keyframes marquee-r { from { transform: translateX(calc(-100% - var(--marquee-gap, 48px))); } to { transform: none; } }
 @keyframes float-y {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-14px); }
