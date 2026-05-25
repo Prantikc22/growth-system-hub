@@ -83,7 +83,7 @@ export function Footer() {
             <p className="text-[10px] font-bold uppercase tracking-widest text-foreground/40 mb-4">Reach us</p>
             <ul className="space-y-2.5">
               <li><Link to="/contact" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">Contact</Link></li>
-              <li><a href="https://wa.me/919073559000" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">WhatsApp</a></li>
+              <li><a href="https://wa.me/919123808384" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">WhatsApp</a></li>
               <li><a href="mailto:hello@remarqd.com" className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">hello@remarqd.com</a></li>
             </ul>
           </div>

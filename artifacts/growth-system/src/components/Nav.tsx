@@ -68,15 +68,17 @@ export function Nav() {
 
         {/* Desktop CTA */}
         <div className="hidden md:flex reveal-right items-center" style={{ animationDelay: "400ms" }}>
-          <button
-            onClick={() => {
-              if (pathname === "/") smoothScrollTo("#configurator");
-              else window.location.href = "/#configurator";
-            }}
-            className="btn-gradient rounded-full h-10 md:h-11 px-5 md:px-6 text-sm"
-          >
-            Get a quote →
-          </button>
+          <div className={scrolled ? "hero-cta-ring rounded-full" : undefined}>
+            <button
+              onClick={() => {
+                if (pathname === "/") smoothScrollTo("#configurator");
+                else window.location.href = "/#configurator";
+              }}
+              className="btn-gradient rounded-full h-10 md:h-11 px-5 md:px-6 text-sm relative z-10"
+            >
+              Get a quote →
+            </button>
+          </div>
         </div>
 
         {/* Mobile hamburger */}

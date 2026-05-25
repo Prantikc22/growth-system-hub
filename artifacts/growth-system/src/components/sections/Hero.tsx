@@ -1,6 +1,6 @@
 import { smoothScrollTo } from "@/lib/smooth-scroll";
 import { Marquee } from "@/components/Marquee";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const CLIENT_LOGOS: { src: string; alt: string; mode?: "screen" }[] = [
   { src: "/clients/bodycraft.webp",   alt: "Bodycraft" },
@@ -18,59 +18,10 @@ const CLIENT_LOGOS: { src: string; alt: string; mode?: "screen" }[] = [
   { src: "/clients/flank.png",        alt: "Flank",       mode: "screen" },
 ];
 
-function CountUp({ to, duration = 1800 }: { to: number; duration?: number }) {
-  const [val, setVal] = useState(0);
-  const started = useRef(false);
-  const elRef = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !started.current) {
-        started.current = true;
-        const start = performance.now();
-        const tick = (now: number) => {
-          const t = Math.min((now - start) / duration, 1);
-          const eased = 1 - Math.pow(1 - t, 3);
-          setVal(Math.round(eased * to));
-          if (t < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-      }
-    }, { threshold: 0.3 });
-    if (elRef.current) observer.observe(elRef.current);
-    return () => observer.disconnect();
-  }, [to, duration]);
-
-  return <span ref={elRef}>{val.toLocaleString("en-IN")}</span>;
-}
-
-function SparkLine() {
-  return (
-    <svg width="80" height="28" viewBox="0 0 80 28" fill="none" className="overflow-visible">
-      <path
-        d="M2 24 L14 18 L24 20 L36 12 L46 15 L56 7 L68 9 L78 3"
-        stroke="url(#sparkGrad)"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-        className="hero-sparkline"
-      />
-      <defs>
-        <linearGradient id="sparkGrad" x1="0" y1="0" x2="80" y2="0" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#93c5fd" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#c4b5fd" />
-        </linearGradient>
-      </defs>
-    </svg>
-  );
-}
-
 export function Hero() {
   const bgRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const dashLayerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let rafId: number;
@@ -96,8 +47,6 @@ export function Hero() {
         glowRef.current.style.transform = `translate(${x * 28}px, ${y * 20}px)`;
       if (textRef.current)
         textRef.current.style.transform = `translate(${x * -4}px, ${y * -3}px)`;
-      if (dashLayerRef.current)
-        dashLayerRef.current.style.transform = `translate(${x * 14}px, ${y * 9}px)`;
 
       rafId = requestAnimationFrame(animate);
     };
@@ -113,14 +62,14 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden min-h-screen flex flex-col">
 
-      {/* ── Background image layer — parallax depth 1 ── */}
+      {/* Background image layer — parallax depth 1 */}
       <div
         ref={bgRef}
         className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
         style={{ backgroundImage: "url('/hero-laptop.png')" }}
       />
 
-      {/* ── Ambient glow orb — parallax depth 2 ── */}
+      {/* Ambient glow orb — parallax depth 2 */}
       <div
         ref={glowRef}
         className="absolute will-change-transform hero-glow-orb"
@@ -134,60 +83,7 @@ export function Hero() {
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#080B12]/80 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#080B12] to-transparent" />
 
-      {/* ── Floating dashboard overlay — parallax depth 3 (desktop only) ── */}
-      <div
-        ref={dashLayerRef}
-        className="absolute inset-0 hidden md:block will-change-transform"
-        style={{ pointerEvents: "none", zIndex: 5 }}
-      >
-        {/* ROAS card */}
-        <div
-          className="absolute rounded-2xl border border-white/10 bg-[#0d1120]/70 backdrop-blur-md px-4 py-3 shadow-xl"
-          style={{ top: "18%", right: "6%", minWidth: 120 }}
-        >
-          <p className="text-[9px] font-semibold uppercase tracking-widest text-white/35 mb-1">ROAS</p>
-          <div className="flex items-end gap-1">
-            <span className="text-2xl font-extrabold tabular-nums text-white leading-none">8.1</span>
-            <span className="text-sm font-semibold text-white/50 mb-0.5">×</span>
-          </div>
-          <div className="flex items-center gap-1.5 mt-1.5">
-            <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
-            </span>
-            <span className="text-[9px] text-emerald-400 font-semibold">+78.6%</span>
-          </div>
-        </div>
-
-        {/* Revenue card with count-up */}
-        <div
-          className="absolute rounded-2xl border border-white/10 bg-[#0d1120]/70 backdrop-blur-md px-4 py-3 shadow-xl"
-          style={{ top: "36%", right: "3%", minWidth: 160 }}
-        >
-          <p className="text-[9px] font-semibold uppercase tracking-widest text-white/35 mb-1">Revenue Generated</p>
-          <p className="text-lg font-extrabold tabular-nums text-white leading-none">
-            ₹<CountUp to={321452} duration={2200} />
-          </p>
-          <div className="mt-2">
-            <SparkLine />
-          </div>
-        </div>
-
-        {/* CTR card */}
-        <div
-          className="absolute rounded-2xl border border-white/10 bg-[#0d1120]/70 backdrop-blur-md px-3.5 py-2.5 shadow-xl"
-          style={{ top: "57%", right: "10%", minWidth: 100 }}
-        >
-          <p className="text-[9px] font-semibold uppercase tracking-widest text-white/35 mb-1">CTR</p>
-          <p className="text-lg font-extrabold text-white leading-none">2.45%</p>
-          {/* Mini progress bar */}
-          <div className="mt-2 h-1 w-full rounded-full bg-white/10 overflow-hidden">
-            <div className="h-full rounded-full bg-gradient-to-r from-blue-400 to-violet-400 hero-progress-bar" />
-          </div>
-        </div>
-      </div>
-
-      {/* ── Main text content — parallax depth 4 ── */}
+      {/* Main text content — parallax depth 3 */}
       <div className="container-wide flex-1 flex items-center relative pt-24 md:pt-32 pb-12" style={{ zIndex: 10 }}>
         <div ref={textRef} className="w-full md:max-w-[60%] will-change-transform">
           {/* Badge */}
@@ -227,7 +123,6 @@ export function Hero() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3 mb-10">
-            {/* Animated border wrapper */}
             <div className="hero-cta-ring rounded-full self-start sm:self-auto">
               <button
                 onClick={() => smoothScrollTo("#configurator")}

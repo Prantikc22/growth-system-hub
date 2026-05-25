@@ -41,7 +41,7 @@ export function quoteConfirmationHtml(name: string, services: string) {
           <p style="font-size:15px;color:#222;font-weight:600;margin:0;">${services}</p>
         </div>
         <p style="font-size:14px;color:#888;line-height:1.6;margin:0 0 32px;">
-          While you wait, feel free to explore our <a href="https://remarqd.com/work" style="color:#7C3AED;text-decoration:none;font-weight:600;">case studies</a> or reach out on <a href="https://wa.me/919073559000" style="color:#7C3AED;text-decoration:none;font-weight:600;">WhatsApp</a>.
+          While you wait, feel free to explore our <a href="https://remarqd.com/work" style="color:#7C3AED;text-decoration:none;font-weight:600;">case studies</a> or reach out on <a href="https://wa.me/919123808384" style="color:#7C3AED;text-decoration:none;font-weight:600;">WhatsApp</a>.
         </p>
         <a href="https://remarqd.com" style="display:inline-block;background:#080B12;color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:14px 28px;border-radius:100px;">Visit Remarqd →</a>
       </td>

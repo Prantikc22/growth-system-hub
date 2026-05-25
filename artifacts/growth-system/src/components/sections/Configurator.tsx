@@ -135,7 +135,7 @@ export function Configurator() {
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href={`https://wa.me/919073559000?text=${encodeURIComponent("Hi, I just submitted a quote on remarqd.com. Looking forward to connecting!")}`}
+              href={`https://wa.me/919123808384?text=${encodeURIComponent("Hi, I just submitted a quote on remarqd.com. Looking forward to connecting!")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-gradient rounded-full px-7 py-3.5 text-sm inline-flex items-center justify-center gap-2"
