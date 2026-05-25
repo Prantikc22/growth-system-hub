@@ -259,7 +259,7 @@ html, body { overflow-x: hidden; max-width: 100vw; }
   .marquee-track {
     display: flex;
     flex-shrink: 0;
-    min-width: 100%;
+    width: max-content;
     animation: marquee-l var(--marquee-duration, 30s) linear infinite;
     will-change: transform;
   }

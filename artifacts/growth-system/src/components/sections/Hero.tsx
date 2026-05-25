@@ -110,21 +110,21 @@ export function Hero() {
       <div className="relative z-10" style={{ background: "linear-gradient(180deg, transparent 0%, rgba(8,11,18,0.85) 30%, #080B12 100%)" }}>
         <div className="py-6 md:py-7">
           <p className="text-center text-[10px] uppercase tracking-[0.2em] text-white/20 mb-5" style={{ fontFamily: "'Syne',sans-serif" }}>Trusted by</p>
-          <Marquee duration={50} gap={56}>
+          <Marquee duration={60} gap={72}>
             {CLIENT_LOGOS.map((logo) => (
-              <div key={logo.alt} className="flex items-center justify-center shrink-0" style={{ height: 32 }}>
+              <div key={logo.alt} className="flex items-center justify-center shrink-0" style={{ height: 44 }}>
                 <img
                   src={logo.src}
                   alt={logo.alt}
                   draggable={false}
-                  className="opacity-35 hover:opacity-60 transition-opacity duration-300"
+                  className="opacity-40 hover:opacity-70 transition-opacity duration-300"
                   style={{
-                    height: 26,
+                    height: 38,
                     width: "auto",
-                    maxWidth: 110,
+                    maxWidth: 150,
                     objectFit: "contain",
                     ...(logo.mode === "screen"
-                      ? { mixBlendMode: "screen", filter: "saturate(0) brightness(2)" }
+                      ? { mixBlendMode: "screen", filter: "saturate(0) brightness(2.5)" }
                       : { filter: "brightness(0) invert(1)" }),
                   }}
                 />
