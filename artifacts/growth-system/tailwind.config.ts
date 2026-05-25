@@ -43,8 +43,10 @@ export default {
         sm: "calc(var(--radius) - 8px)",
       },
       fontFamily: {
-        display: ['Inter', 'system-ui', 'sans-serif'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['"Instrument Serif"', 'Georgia', 'serif'],
+        serif:   ['"Instrument Serif"', 'Georgia', 'serif'],
+        ui:      ['"Syne"', 'system-ui', 'sans-serif'],
+        sans:    ['"DM Sans"', 'system-ui', 'sans-serif'],
       },
       keyframes: {
         "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },

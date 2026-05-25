@@ -4,53 +4,42 @@
 
 /* ============================================================
    GROWTH SYSTEM — Design tokens
-   All colors HSL. All animations GPU-accelerated.
+   Instrument Serif · Syne · DM Sans
    ============================================================ */
 
 @layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 6%;
-
     --card: 0 0% 100%;
     --card-foreground: 0 0% 6%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 6%;
 
     /* Brand */
-    --primary: 222 89% 55%;          /* #2563EB electric blue */
+    --primary: 222 89% 55%;
     --primary-foreground: 0 0% 100%;
     --primary-glow: 222 100% 70%;
-
     --secondary: 0 0% 96%;
     --secondary-foreground: 0 0% 6%;
-
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 40%;
-
-    --accent: 142 71% 45%;            /* growth green */
+    --accent: 142 71% 45%;
     --accent-foreground: 0 0% 100%;
-
-    --ink: 0 0% 5%;                   /* deep ink */
+    --ink: 0 0% 5%;
     --ink-foreground: 0 0% 98%;
-
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 0 0% 90%;
     --input: 0 0% 90%;
     --ring: 222 89% 55%;
-
     --radius: 0.875rem;
 
     /* Gradients */
     --gradient-hero: radial-gradient(circle at 20% 20%, hsl(222 89% 55% / 0.18), transparent 50%),
-                     radial-gradient(circle at 80% 60%, hsl(280 89% 60% / 0.14), transparent 55%),
-                     radial-gradient(circle at 50% 90%, hsl(142 71% 50% / 0.12), transparent 55%);
+                     radial-gradient(circle at 80% 60%, hsl(280 89% 60% / 0.14), transparent 55%);
     --gradient-ink: linear-gradient(180deg, hsl(0 0% 5%), hsl(0 0% 8%));
     --gradient-blue: linear-gradient(135deg, hsl(222 89% 55%), hsl(222 100% 70%));
-    --gradient-text: linear-gradient(135deg, hsl(0 0% 6%), hsl(222 89% 55%));
 
     /* Shadows */
     --shadow-soft: 0 4px 30px -8px hsl(0 0% 0% / 0.08);
@@ -87,21 +76,22 @@
 
 @layer base {
   * { @apply border-border; }
-  html { scroll-behavior: auto; } /* we handle smooth scroll in JS */
+  html { scroll-behavior: auto; }
+
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    font-feature-settings: 'ss01', 'cv11';
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
     cursor: none;
   }
   @media (max-width: 768px) { body { cursor: auto; } }
 
   ::selection { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
 
+  /* Headings → Instrument Serif */
   h1, h2, h3, h4, h5 {
-    font-family: 'Inter', system-ui, sans-serif;
-    letter-spacing: -0.025em;
-    font-weight: 700;
+    font-family: 'Instrument Serif', Georgia, serif;
+    letter-spacing: -0.02em;
+    font-weight: 400;
   }
 }
 
@@ -112,22 +102,29 @@
   .container-tight { @apply mx-auto w-full max-w-7xl px-6 md:px-10; }
   .container-wide  { @apply mx-auto w-full max-w-[1440px] px-6 md:px-10; }
 
+  /* Pills & labels → Syne */
   .pill {
-    @apply inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-1.5 text-xs font-medium tracking-wide text-muted-foreground;
+    @apply inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-1.5 text-xs tracking-wide text-muted-foreground;
+    font-family: 'Syne', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
 
   .heading-display {
+    font-family: 'Instrument Serif', Georgia, serif;
     font-size: clamp(2.75rem, 7vw, 6.5rem);
     line-height: 0.95;
-    font-weight: 800;
-    letter-spacing: -0.04em;
+    font-weight: 400;
+    letter-spacing: -0.02em;
   }
 
   .heading-section {
+    font-family: 'Instrument Serif', Georgia, serif;
     font-size: clamp(2rem, 4.5vw, 3.75rem);
     line-height: 1.05;
-    font-weight: 800;
-    letter-spacing: -0.035em;
+    font-weight: 400;
+    letter-spacing: -0.02em;
   }
 
   .text-gradient-blue {
@@ -147,7 +144,38 @@
     box-shadow: var(--shadow-card);
   }
 
-  /* Hero word reveal mask */
+  /* ── Button fill animation ──────────────────────────────── */
+  .btn-gradient {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-weight: 700;
+    position: relative;
+    overflow: hidden;
+    background-image: linear-gradient(to right, #60a5fa 0%, #a78bfa 25%, #2563EB 50%, #7C3AED 100%);
+    background-size: 200% 100%;
+    background-position: right center;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-position 0.55s cubic-bezier(0.19, 1, 0.22, 1),
+                box-shadow 0.3s ease,
+                transform 0.2s ease;
+    box-shadow: 0 6px 24px rgba(37,99,235,0.35);
+  }
+  .btn-gradient:hover {
+    background-position: left center;
+    box-shadow: 0 14px 44px rgba(99,102,241,0.55);
+    transform: translateY(-2px);
+  }
+  .btn-gradient:active { transform: translateY(0); }
+
+  .btn-outline-dark {
+    font-family: 'Syne', system-ui, sans-serif;
+    font-weight: 600;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  }
+  .btn-outline-dark:hover { transform: translateY(-1px); }
+
+  /* Word reveal mask */
   .word-mask {
     display: inline-block;
     overflow: hidden;
@@ -162,15 +190,7 @@
     animation: word-rise 0.9s var(--ease-out-expo) forwards;
   }
 
-  /* Letter stagger */
-  .letter-stagger > span {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(8px);
-    animation: letter-in 0.5s var(--ease-out-expo) forwards;
-  }
-
-  /* Magnetic cursor — always visible, adapts to bg */
+  /* Magnetic cursor */
   .cursor-dot {
     position: fixed;
     pointer-events: none;
@@ -180,18 +200,11 @@
     background: hsl(var(--ink));
     border: 1.5px solid hsl(0 0% 100% / 0.4);
     transform: translate(-50%, -50%);
-    transition: width 0.2s var(--ease-spring), height 0.2s var(--ease-spring), background 0.15s ease, border-color 0.15s ease;
+    transition: width 0.2s var(--ease-spring), height 0.2s var(--ease-spring), background 0.15s ease;
     will-change: transform;
   }
-  .cursor-dot.on-dark {
-    background: hsl(0 0% 100%);
-    border-color: hsl(0 0% 0% / 0.3);
-  }
-  .cursor-dot.is-hover {
-    width: 0; height: 0;
-    background: transparent;
-    border: none;
-  }
+  .cursor-dot.on-dark { background: hsl(0 0% 100%); border-color: hsl(0 0% 0% / 0.3); }
+  .cursor-dot.is-hover { width: 0; height: 0; background: transparent; border: none; }
   .cursor-ring {
     position: fixed;
     pointer-events: none;
@@ -201,25 +214,17 @@
     border: 1.5px solid hsl(var(--ink) / 0.5);
     background: transparent;
     transform: translate(-50%, -50%);
-    transition: width 0.35s var(--ease-spring), height 0.35s var(--ease-spring), border-color 0.2s ease, background 0.2s ease;
+    transition: width 0.35s var(--ease-spring), height 0.35s var(--ease-spring), border-color 0.2s ease;
     will-change: transform;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .cursor-ring.on-dark {
-    border-color: hsl(0 0% 100% / 0.6);
-  }
-  .cursor-ring.is-hover {
-    width: 70px; height: 70px;
-    border-color: hsl(var(--ink));
-    background: hsl(var(--ink) / 0.06);
-  }
-  .cursor-ring.on-dark.is-hover {
-    border-color: hsl(0 0% 100% / 0.9);
-    background: hsl(0 0% 100% / 0.08);
-  }
+  .cursor-ring.on-dark { border-color: hsl(0 0% 100% / 0.6); }
+  .cursor-ring.is-hover { width: 70px; height: 70px; border-color: hsl(var(--ink)); background: hsl(var(--ink) / 0.06); }
+  .cursor-ring.on-dark.is-hover { border-color: hsl(0 0% 100% / 0.9); background: hsl(0 0% 100% / 0.08); }
   .cursor-label {
+    font-family: 'Syne', system-ui, sans-serif;
     font-size: 10px;
     font-weight: 700;
     color: hsl(var(--ink));
@@ -240,7 +245,6 @@
     background: hsl(var(--primary));
     z-index: 100;
     transform-origin: 0 50%;
-    transition: opacity 0.25s ease;
     will-change: transform, opacity;
   }
 
@@ -258,35 +262,42 @@
     min-width: 100%;
     animation: marquee-l var(--marquee-duration, 30s) linear infinite;
   }
-  .marquee.reverse .marquee-track { animation-name: marquee-r; animation-duration: var(--marquee-duration, 40s); }
+  .marquee.reverse .marquee-track { animation-name: marquee-r; }
   .marquee:hover .marquee-track { animation-play-state: paused; }
 
-  /* Float for hero cards */
-  .float-card { animation: float-y var(--float-d, 5s) ease-in-out infinite; will-change: transform; }
+  /* Problem card hover glow */
+  .problem-card {
+    transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease, border-color 0.4s ease;
+    background: white;
+    border: 1px solid hsl(var(--border));
+  }
+  .problem-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px -16px rgba(37,99,235,0.15), 0 0 0 1px rgba(124,58,237,0.2);
+    border-color: rgba(124,58,237,0.25);
+  }
 
-  /* Service row hover bar */
+  /* Service accordion */
+  .service-row { transition: background 0.3s ease; }
+  .service-row:hover { background: hsl(var(--secondary) / 0.5); }
+  .service-row.is-open { background: hsl(var(--secondary)); }
+
+  /* Accent bar */
   .accent-bar {
     width: 3px;
-    background: hsl(var(--primary));
+    background: linear-gradient(180deg, #2563EB, #7C3AED);
     transform: scaleY(0);
     transform-origin: top;
     transition: transform 0.4s var(--ease-out-expo);
   }
-  .group:hover .accent-bar, .is-active .accent-bar { transform: scaleY(1); }
+  .group:hover .accent-bar, .is-active .accent-bar, .is-open .accent-bar { transform: scaleY(1); }
+
+  /* Float */
+  .float-card { animation: float-y var(--float-d, 5s) ease-in-out infinite; will-change: transform; }
 
   /* Split-flap digit */
-  .flap {
-    display: inline-block;
-    overflow: hidden;
-    height: 1em;
-    line-height: 1;
-    vertical-align: bottom;
-  }
-  .flap-inner {
-    display: flex;
-    flex-direction: column;
-    will-change: transform;
-  }
+  .flap { display: inline-block; overflow: hidden; height: 1em; line-height: 1; vertical-align: bottom; }
+  .flap-inner { display: flex; flex-direction: column; will-change: transform; }
 
   /* Page-load reveal helpers */
   .reveal-up { opacity: 0; transform: translateY(16px); animation: reveal-up 0.8s var(--ease-out-expo) forwards; }
@@ -302,12 +313,14 @@
   .iv-slide-r.is-in { opacity: 1; transform: none; }
   .iv-pop { opacity: 0; transform: scale(0.85); transition: all 0.7s var(--ease-spring); }
   .iv-pop.is-in { opacity: 1; transform: none; }
-  .iv-flip { opacity: 0; transform: perspective(800px) rotateY(90deg); transform-origin: center; transition: all 0.9s var(--ease-out-expo); }
-  .iv-flip.is-in { opacity: 1; transform: none; }
   .iv-stamp { opacity: 0; transform: translateY(-80px) scale(1.4); transition: opacity 0.5s ease, transform 0.7s var(--ease-spring); }
   .iv-stamp.is-in { opacity: 1; transform: none; }
 
-  /* No-cursor zone (forms) */
+  /* Problem card icon pulse on hover */
+  .problem-card:hover .problem-icon {
+    animation: icon-pulse 0.6s var(--ease-spring);
+  }
+
   .has-system-cursor, .has-system-cursor * { cursor: auto !important; }
 }
 
@@ -315,7 +328,6 @@
    KEYFRAMES
    ============================================================ */
 @keyframes word-rise { to { transform: translateY(0); } }
-@keyframes letter-in { to { opacity: 1; transform: none; } }
 @keyframes fade-in { to { opacity: 1; } }
 @keyframes reveal-up { to { opacity: 1; transform: none; } }
 @keyframes reveal-right { to { opacity: 1; transform: none; } }
@@ -330,8 +342,21 @@
   50% { box-shadow: 0 0 0 12px hsl(var(--accent) / 0); }
 }
 @keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes icon-pulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25) rotate(-5deg); }
+  70% { transform: scale(0.95) rotate(3deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+@keyframes line-draw {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

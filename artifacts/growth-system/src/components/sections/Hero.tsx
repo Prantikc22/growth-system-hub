@@ -1,84 +1,81 @@
 import { smoothScrollTo } from "@/lib/smooth-scroll";
+import { Marquee } from "@/components/Marquee";
+
+const CLIENT_LOGOS = [
+  { src: "/clients/82e.webp",       alt: "82°E",        w: 160, h: 44 },
+  { src: "/clients/bodycraft.webp", alt: "Bodycraft",   w: 120, h: 34 },
+  { src: "/clients/cosmic.webp",    alt: "Cosmic",      w: 110, h: 34 },
+  { src: "/clients/karigari.png",   alt: "Karigari",    w: 200, h: 48 },
+  { src: "/clients/chai-point.png", alt: "Chai Point",  w: 96,  h: 34 },
+  { src: "/clients/sarada.png",     alt: "Sarada",      w: 110, h: 34 },
+];
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden min-h-screen flex flex-col">
-      {/* Full-bleed background photo */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/hero-laptop.png')" }}
-      />
-      {/* Dark gradient: heavy on left for text, fades right — full coverage on mobile */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#080B12]/98 via-[#080B12]/80 to-[#080B12]/30 md:via-[#080B12]/65 md:to-[#080B12]/15" />
-      {/* Top fade */}
+      {/* Background */}
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/hero-laptop.png')" }} />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#080B12]/98 via-[#080B12]/82 to-[#080B12]/20 md:to-[#080B12]/10" />
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#080B12]/80 to-transparent" />
-      {/* Bottom fade */}
-      <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#080B12] to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#080B12] to-transparent" />
 
-      {/* Text content — full width on mobile, half on desktop */}
-      <div className="container-wide flex-1 flex items-center relative z-10 pt-24 md:pt-32 pb-16">
-        <div className="w-full md:max-w-[58%]">
+      {/* Main content */}
+      <div className="container-wide flex-1 flex items-center relative z-10 pt-24 md:pt-32 pb-12">
+        <div className="w-full md:max-w-[60%]">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 mb-6 md:mb-7">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 mb-6 md:mb-8"
+            style={{ fontFamily: "'Syne', sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", color: "rgba(255,255,255,0.6)", textTransform: "uppercase" }}>
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-white/70 text-xs font-medium tracking-wide">
-              Not an agency. A growth system.
-            </span>
+            Not an agency. A growth system.
           </div>
 
-          {/* Headline */}
-          <h1 className="text-[clamp(2.4rem,7vw,4.8rem)] font-black leading-[1.05] tracking-tight text-white mb-5 md:mb-6">
-            More visibility.<br />
+          {/* Headline — Instrument Serif */}
+          <h1 className="font-serif text-[clamp(3rem,8vw,5.5rem)] font-normal leading-[0.98] tracking-tight text-white mb-6 md:mb-7">
             More{" "}
-            <span
+            <em
               style={{
-                background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 60%, #C026D3 100%)",
+                fontStyle: "italic",
+                background: "linear-gradient(90deg, #93c5fd 0%, #c4b5fd 45%, #f9a8d4 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }}
             >
               revenue.
-            </span>
+            </em>
             <br />
-            Less chaos.
+            Less noise.
+            <br />
+            One team.
           </h1>
 
-          {/* Subtitle */}
-          <p className="text-white/55 text-base md:text-lg leading-relaxed mb-8 md:mb-9 max-w-sm md:max-w-sm">
-            Everything your brand needs to grow — in one place, at transparent
-            pricing, with a team that actually shows up.
+          {/* Subtitle — DM Sans */}
+          <p className="text-white/55 text-base md:text-lg leading-relaxed mb-8 max-w-sm font-sans">
+            Everything your brand needs to grow — in one place, at transparent pricing,
+            with a team that actually shows up.
           </p>
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3 mb-10">
             <button
               onClick={() => smoothScrollTo("#configurator")}
-              className="inline-flex items-center justify-center gap-2 rounded-full font-bold px-7 py-3.5 text-sm md:text-base text-white transition-all hover:opacity-90 hover:scale-[1.02] active:scale-[0.98]"
-              style={{
-                background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)",
-                boxShadow: "0 8px 30px rgba(37,99,235,0.45)",
-              }}
+              className="btn-gradient inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm"
             >
               Get Growth Blueprint →
             </button>
             <button
               onClick={() => smoothScrollTo("#work")}
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 text-white font-semibold px-7 py-3.5 text-sm md:text-base hover:border-white/55 hover:bg-white/5 transition-all"
+              className="btn-outline-dark inline-flex items-center justify-center rounded-full border border-white/30 text-white px-7 py-3.5 text-sm hover:bg-white/8 hover:border-white/50"
             >
               See Case Studies
             </button>
           </div>
 
-          {/* Trust row */}
+          {/* Stars */}
           <div className="flex items-center gap-3">
             <div className="flex -space-x-2">
               {(["#7C3AED", "#0F766E", "#A8336E"] as const).map((c, i) => (
-                <div
-                  key={i}
-                  className="w-8 h-8 rounded-full border-2 border-[#080B12] grid place-items-center text-[10px] font-bold text-white"
-                  style={{ background: c }}
-                >
+                <div key={i} className="w-8 h-8 rounded-full border-2 border-[#080B12] grid place-items-center text-[10px] font-bold text-white" style={{ background: c }}>
                   {["AK", "RS", "DS"][i]}
                 </div>
               ))}
@@ -91,71 +88,31 @@ export function Hero() {
                   </svg>
                 ))}
               </div>
-              <p className="text-white/45 text-xs">4.9/5 from 25+ growth-focused brands</p>
+              <p className="text-white/40 text-xs font-sans">4.9/5 from 25+ growth-focused brands</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Stats bar */}
-      <div className="relative z-10">
-        <div className="container-wide py-6 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
-          {STATS.map((s) => (
-            <div key={s.label} className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full border border-white/15 grid place-items-center text-white/45 shrink-0">
-                <s.Icon />
+      {/* Client logos strip at the bottom */}
+      <div className="relative z-10 border-t border-white/8">
+        <div className="py-5 md:py-6">
+          <p className="text-center text-[10px] uppercase tracking-[0.2em] text-white/25 mb-4 font-ui">Trusted by</p>
+          <Marquee duration={40} gap={56}>
+            {CLIENT_LOGOS.map((logo) => (
+              <div key={logo.alt} className="flex items-center">
+                <img
+                  src={logo.src}
+                  alt={logo.alt}
+                  style={{ width: logo.w, height: logo.h, objectFit: "contain", filter: "brightness(0) invert(1)" }}
+                  className="opacity-35 hover:opacity-60 transition-opacity duration-300"
+                  draggable={false}
+                />
               </div>
-              <div>
-                {s.value && (
-                  <div className="text-white font-extrabold text-sm md:text-lg leading-tight">{s.value}</div>
-                )}
-                <div className="text-white/40 text-[10px] md:text-[11px] leading-snug">{s.label}</div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </Marquee>
         </div>
       </div>
     </section>
   );
 }
-
-const STATS = [
-  {
-    Icon: () => (
-      <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      </svg>
-    ),
-    value: undefined as string | undefined,
-    label: "Trusted by ambitious D2C & service brands",
-  },
-  {
-    Icon: () => (
-      <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-      </svg>
-    ),
-    value: "₹12Cr+",
-    label: "Revenue Influenced",
-  },
-  {
-    Icon: () => (
-      <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
-      </svg>
-    ),
-    value: "25+",
-    label: "Brands Scaled",
-  },
-  {
-    Icon: () => (
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-      </svg>
-    ),
-    value: "4.9/5",
-    label: "Client Satisfaction",
-  },
-];

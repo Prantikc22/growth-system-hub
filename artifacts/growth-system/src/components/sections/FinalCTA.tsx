@@ -1,59 +1,94 @@
-import { Reveal } from "@/components/Reveal";
 import { Link } from "react-router-dom";
 import { smoothScrollTo } from "@/lib/smooth-scroll";
 import { useLocation } from "react-router-dom";
+import { useInView } from "@/hooks/use-in-view";
+import { cn } from "@/lib/utils";
 
 export function FinalCTA() {
   const { pathname } = useLocation();
+  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.2 });
 
   return (
-    <section className="py-24 md:py-32 container-wide">
-      <Reveal variant="pop">
-        <div
-          className="rounded-3xl text-white p-10 md:p-20 text-center relative overflow-hidden"
-          style={{ background: "linear-gradient(135deg, #0d0d0d 0%, #0f172a 50%, #1a0a2e 100%)" }}
-        >
-          {/* Glow orbs */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[200px] opacity-30 pointer-events-none"
-            style={{ background: "radial-gradient(ellipse, #2563EB 0%, transparent 70%)" }} />
-          <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full opacity-20 pointer-events-none"
-            style={{ background: "radial-gradient(circle, #7C3AED 0%, transparent 70%)" }} />
-          <div className="absolute -bottom-20 -right-20 w-72 h-72 rounded-full opacity-15 pointer-events-none"
-            style={{ background: "radial-gradient(circle, #2563EB 0%, transparent 70%)" }} />
+    <section
+      className="relative overflow-hidden py-28 md:py-40"
+      style={{ background: "linear-gradient(180deg, #060810 0%, #0d0620 50%, #060810 100%)" }}
+    >
+      {/* Ambient glows */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] opacity-25"
+          style={{ background: "radial-gradient(ellipse, #2563EB 0%, transparent 65%)" }} />
+        <div className="absolute bottom-0 left-1/3 w-[600px] h-[300px] opacity-20"
+          style={{ background: "radial-gradient(ellipse, #7C3AED 0%, transparent 65%)" }} />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[250px] opacity-15"
+          style={{ background: "radial-gradient(ellipse, #ec4899 0%, transparent 65%)" }} />
+      </div>
 
-          <div className="relative z-10">
-            <p className="text-xs uppercase tracking-widest text-white/40 mb-3">Your move</p>
-            <h2 className="text-[clamp(2rem,4.5vw,3.75rem)] font-extrabold tracking-tight text-white leading-[1.05] mb-5">
-              Scale your business without<br className="hidden md:block" /> scaling your costs.
-            </h2>
-            <p className="max-w-lg mx-auto text-base md:text-lg text-white/60 mb-8 leading-relaxed">
-              Book a 30-minute strategy call. We map your gaps, show you where growth is being left on the table, and tell you exactly how we fix it.
-            </p>
-            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
-              <button
-                onClick={() => {
-                  if (pathname === "/") smoothScrollTo("#configurator");
-                  else window.location.href = "/#configurator";
-                }}
-                className="inline-flex items-center justify-center gap-2 rounded-full font-bold px-8 py-4 text-sm text-white transition-all hover:opacity-90 hover:scale-[1.02]"
-                style={{
-                  background: "linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)",
-                  boxShadow: "0 8px 30px rgba(37,99,235,0.45)",
-                }}
-              >
-                Grow my revenue →
-              </button>
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full font-semibold px-8 py-4 text-sm text-white border border-white/20 bg-white/5 hover:bg-white/10 transition-all"
-              >
-                Talk to a human first
-              </Link>
-            </div>
-            <p className="mt-6 text-xs text-white/30">No commitment. No sales pitch. Just clarity.</p>
-          </div>
+      {/* Noise texture overlay */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E\")", backgroundSize: "128px 128px" }} />
+
+      <div ref={ref} className="container-wide relative z-10 text-center">
+        <p
+          className={cn("inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs mb-6 text-white/40 uppercase tracking-widest transition-all duration-700", inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4")}
+          style={{ fontFamily: "'Syne',sans-serif", fontWeight: 600 }}
+        >
+          Your move
+        </p>
+
+        <h2
+          className={cn("font-serif text-[clamp(2.5rem,6vw,5.5rem)] font-normal text-white leading-[0.98] tracking-tight mb-6 transition-all duration-800", inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}
+          style={{ transitionDelay: "100ms" }}
+        >
+          Scale your business<br />
+          <em
+            className="italic"
+            style={{
+              background: "linear-gradient(90deg, #93c5fd 0%, #c4b5fd 40%, #f9a8d4 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            without scaling your costs.
+          </em>
+        </h2>
+
+        <p
+          className={cn("text-white/50 font-sans text-lg md:text-xl leading-relaxed max-w-xl mx-auto mb-10 transition-all duration-700", inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}
+          style={{ transitionDelay: "200ms" }}
+        >
+          Book a 30-minute strategy call. We map your gaps, show you where growth is being
+          left on the table, and tell you exactly how we fix it.
+        </p>
+
+        <div
+          className={cn("flex flex-col sm:flex-row gap-4 justify-center mb-8 transition-all duration-700", inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}
+          style={{ transitionDelay: "300ms" }}
+        >
+          <button
+            onClick={() => {
+              if (pathname === "/") smoothScrollTo("#configurator");
+              else window.location.href = "/#configurator";
+            }}
+            className="btn-gradient rounded-full px-10 py-4 text-base"
+          >
+            Grow my revenue →
+          </button>
+          <Link
+            to="/contact"
+            className="btn-outline-dark rounded-full border border-white/20 text-white px-10 py-4 text-sm hover:bg-white/6 hover:border-white/35 inline-flex items-center justify-center"
+          >
+            Talk to a human first
+          </Link>
         </div>
-      </Reveal>
+
+        <p
+          className={cn("text-white/25 text-xs font-sans transition-all duration-700", inView ? "opacity-100" : "opacity-0")}
+          style={{ transitionDelay: "400ms" }}
+        >
+          No commitment · No sales pitch · Just clarity
+        </p>
+      </div>
     </section>
   );
 }
