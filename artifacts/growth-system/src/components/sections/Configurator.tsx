@@ -494,24 +494,26 @@ export function Configurator() {
 }
 
 function Steps({ current, setStep }: { current: number; setStep: (n: number) => void }) {
+  const labels = ["Services", "Details", "Estimate"];
   return (
-    <div className="flex items-center gap-3 mb-8">
+    <div className="flex items-center mb-8 w-full">
       {[1, 2, 3].map((n) => (
-        <button
-          key={n}
-          onClick={() => setStep(n)}
-          className={cn(
-            "flex items-center gap-2 text-sm font-semibold transition-colors",
-            n === current ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-          )}
-        >
-          <span className={cn(
-            "w-7 h-7 rounded-full grid place-items-center text-xs font-bold transition-colors",
-            n <= current ? "bg-ink text-ink-foreground" : "bg-secondary text-muted-foreground"
-          )}>{n}</span>
-          {n === 1 ? "Services" : n === 2 ? "Details" : "Estimate"}
-          {n < 3 && <span className="w-8 h-px bg-border ml-1" />}
-        </button>
+        <div key={n} className="flex items-center flex-1 last:flex-none">
+          <button
+            onClick={() => setStep(n)}
+            className={cn(
+              "flex items-center gap-1.5 text-sm font-semibold transition-colors shrink-0",
+              n === current ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+            )}
+          >
+            <span className={cn(
+              "w-7 h-7 rounded-full grid place-items-center text-xs font-bold transition-colors shrink-0",
+              n <= current ? "bg-ink text-ink-foreground" : "bg-secondary text-muted-foreground"
+            )}>{n}</span>
+            <span className="hidden sm:inline">{labels[n - 1]}</span>
+          </button>
+          {n < 3 && <span className="flex-1 h-px bg-border mx-2" />}
+        </div>
       ))}
     </div>
   );

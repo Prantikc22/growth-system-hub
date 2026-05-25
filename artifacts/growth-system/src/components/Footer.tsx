@@ -46,7 +46,7 @@ export function Footer() {
 
             <a
               href="mailto:hello@remarqd.com"
-              className="text-white/50 hover:text-white text-sm font-medium transition-colors self-end mb-1"
+              className="text-white/50 hover:text-white text-sm font-medium transition-colors md:self-end mb-1"
             >
               hello@remarqd.com
             </a>
