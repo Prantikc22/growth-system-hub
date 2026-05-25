@@ -400,20 +400,42 @@ export function Configurator() {
                 <p className="text-xs uppercase tracking-widest text-ink-foreground/60">Your estimate</p>
                 <span className="text-[10px] uppercase tracking-widest bg-white/10 px-2 py-1 rounded-full">Live</span>
               </div>
-              <div className="mt-3 text-4xl md:text-5xl font-extrabold tabular-nums tracking-tight">
-                ₹<FlapNumber value={est.monthly} />
-                <span className="text-base font-medium text-ink-foreground/60"> /mo</span>
-              </div>
-              {est.onetime > 0 && (
-                <div className="mt-2 text-ink-foreground/70 text-sm">
-                  + <span className="font-semibold text-ink-foreground"><FlapNumber value={est.onetime} /></span> one-time
-                </div>
-              )}
-
-              {compare && est.monthly > 0 && (
-                <div className="mt-4 flex items-center gap-3 animate-pulse-glow rounded-full bg-accent/15 border border-accent/30 px-3 py-2">
-                  <span className="text-sm text-ink-foreground/60 line-through">{formatINR(est.monthly * est.agencyMultiplier)}/mo</span>
-                  <span className="text-xs font-semibold text-accent">Save {Math.round((1 - 1/est.agencyMultiplier) * 100)}% vs typical agency</span>
+              {/* Primary number — monthly OR one-time if no recurring */}
+              {est.monthly > 0 ? (
+                <>
+                  <div className="mt-3 text-4xl md:text-5xl font-extrabold tabular-nums tracking-tight">
+                    ₹<FlapNumber value={est.monthly} />
+                    <span className="text-base font-medium text-ink-foreground/60"> /mo</span>
+                  </div>
+                  {est.onetime > 0 && (
+                    <div className="mt-2 text-ink-foreground/70 text-sm">
+                      + <span className="font-semibold text-ink-foreground">₹<FlapNumber value={est.onetime} /></span> one-time setup
+                    </div>
+                  )}
+                  {compare && (
+                    <div className="mt-4 flex items-center gap-3 rounded-full bg-accent/15 border border-accent/30 px-3 py-2">
+                      <span className="text-sm text-ink-foreground/60 line-through">{formatINR(est.monthly * est.agencyMultiplier)}/mo</span>
+                      <span className="text-xs font-semibold text-accent">Save {Math.round((1 - 1 / est.agencyMultiplier) * 100)}% vs agency</span>
+                    </div>
+                  )}
+                </>
+              ) : est.onetime > 0 ? (
+                <>
+                  <div className="mt-3 text-4xl md:text-5xl font-extrabold tabular-nums tracking-tight">
+                    ₹<FlapNumber value={est.onetime} />
+                    <span className="text-base font-medium text-ink-foreground/60"> one-time</span>
+                  </div>
+                  <div className="mt-1 text-xs text-ink-foreground/50">No recurring monthly fee</div>
+                  {compare && (
+                    <div className="mt-4 flex items-center gap-3 rounded-full bg-accent/15 border border-accent/30 px-3 py-2">
+                      <span className="text-sm text-ink-foreground/60 line-through">{formatINR(est.onetime * est.agencyMultiplier)} typical</span>
+                      <span className="text-xs font-semibold text-accent">Save {Math.round((1 - 1 / est.agencyMultiplier) * 100)}% vs agency</span>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="mt-3 text-4xl md:text-5xl font-extrabold tabular-nums tracking-tight text-ink-foreground/30">
+                  ₹—
                 </div>
               )}
 

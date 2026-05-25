@@ -15,7 +15,10 @@ export function Hero() {
     <section className="relative overflow-hidden min-h-screen flex flex-col">
       {/* Background */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/hero-laptop.png')" }} />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#080B12]/98 via-[#080B12]/82 to-[#080B12]/20 md:to-[#080B12]/10" />
+      {/* Mobile: full dark overlay for readability */}
+      <div className="absolute inset-0 bg-[#080B12]/90 md:hidden" />
+      {/* Desktop: directional gradient */}
+      <div className="absolute inset-0 hidden md:block bg-gradient-to-r from-[#080B12]/98 via-[#080B12]/82 to-[#080B12]/10" />
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#080B12]/80 to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#080B12] to-transparent" />
 
