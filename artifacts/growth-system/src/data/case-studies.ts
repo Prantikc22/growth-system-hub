@@ -63,14 +63,14 @@ export const CASE_STUDIES: CaseStudy[] = [
     metrics: [
       { value: 71, suffix: "%", label: "Lower cost per lead" },
       { value: 1840, suffix: "", label: "Qualified site visits" },
-      { value: 92, prefix: "₹", suffix: "Cr", label: "Inventory moved" },
+      { value: 281, prefix: "₹", suffix: "Cr", label: "Inventory moved" },
     ],
     duration: "12 months",
     region: "Pune",
     accent: "#1E40AF",
     art: "browser",
     image: "/cases/realty.jpeg",
-    body: "We replaced a generic landing with a project-specific microsite per launch, layered Meta lead-form ads with a qualifying chatbot, and routed serious enquiries to a WhatsApp booking flow. ₹92 Cr of inventory moved in a year.",
+    body: "We replaced a generic landing with a project-specific microsite per launch, layered Meta lead-form ads with a qualifying chatbot, and routed serious enquiries to a WhatsApp booking flow. ₹281 Cr of inventory moved in a year.",
   },
   {
     slug: "svaraa-jewels",

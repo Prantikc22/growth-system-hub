@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 const STATS = [
   { v: 25,  suffix: "+",    label: "Brands grown",           sub: "D2C, service, and founder-led" },
   { v: 4.7, suffix: "x",    label: "Avg blended ROAS",        sub: "Across all active paid media clients" },
-  { v: 92,  suffix: "Cr+",  prefix: "₹", label: "Revenue moved", sub: "Inventory sold and deals closed" },
+  { v: 281, suffix: "Cr+",  prefix: "₹", label: "Revenue moved", sub: "Inventory sold and deals closed" },
   { v: 24,  suffix: "/7",   label: "Always on",              sub: "Slack & WhatsApp from day one" },
 ];
 
@@ -30,7 +30,7 @@ export function Stats() {
               style={{ transitionDelay: `${i * 100}ms` }}
             >
               <div
-                className="font-serif text-5xl md:text-6xl font-normal tabular-nums mb-3"
+                className="font-serif text-4xl md:text-6xl font-normal tabular-nums mb-3"
                 style={{
                   background: "linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.65) 100%)",
                   WebkitBackgroundClip: "text",

@@ -187,7 +187,7 @@ export function ProblemSolution() {
                 <div className="shrink-0 grid grid-cols-2 gap-3 lg:gap-4 lg:w-72">
                   {[
                     { n: "4.7x", l: "Avg blended ROAS" },
-                    { n: "₹92Cr", l: "Revenue moved" },
+                    { n: "₹281Cr", l: "Revenue moved" },
                     { n: "25+", l: "Brands scaled" },
                     { n: "4.9★", l: "Client satisfaction" },
                   ].map((m) => (
