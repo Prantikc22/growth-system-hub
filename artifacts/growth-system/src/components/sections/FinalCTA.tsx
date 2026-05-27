@@ -65,20 +65,20 @@ export function FinalCTA() {
           className={cn("flex flex-col sm:flex-row gap-4 justify-center mb-8 transition-all duration-700", inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6")}
           style={{ transitionDelay: "300ms" }}
         >
-          <div className="hero-cta-ring rounded-full w-fit mx-auto sm:mx-0">
+          <div className="hero-cta-ring rounded-full">
             <button
               onClick={() => {
                 if (pathname === "/") smoothScrollTo("#configurator");
                 else window.location.href = "/#configurator";
               }}
-              className="btn-gradient rounded-full px-8 py-4 text-sm relative z-10"
+              className="btn-gradient rounded-full w-full sm:w-auto px-8 py-4 text-sm relative z-10"
             >
               Grow my revenue →
             </button>
           </div>
           <Link
             to="/contact"
-            className="btn-outline-dark rounded-full border border-white/20 text-white px-8 py-4 text-sm hover:bg-white/6 hover:border-white/35 inline-flex items-center justify-center"
+            className="btn-outline-dark rounded-full border border-white/20 text-white w-full sm:w-auto px-8 py-4 text-sm hover:bg-white/6 hover:border-white/35 inline-flex items-center justify-center"
           >
             Talk to a human first
           </Link>
