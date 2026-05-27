@@ -44,7 +44,7 @@ export function Nav() {
         {/* Logo */}
         <Link to="/" className="reveal-fade flex items-center gap-2 font-ui font-extrabold text-lg tracking-tight" style={{ animationDelay: "100ms", fontFamily: "'Syne',sans-serif" }}>
           <LogoMark dark={navDark} />
-          <span className={cn("transition-colors duration-300", navDark ? "text-white" : "text-foreground")}>Remarqd</span>
+          <span className={cn("transition-colors duration-300", navDark ? "text-white" : "text-[#080B12]")}>Remarqd</span>
         </Link>
 
         {/* Desktop nav */}
@@ -58,7 +58,7 @@ export function Nav() {
                 "font-ui",
                 navDark
                   ? pathname === l.href ? "text-white" : "text-white/55 hover:text-white"
-                  : pathname === l.href ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  : pathname === l.href ? "text-[#080B12]" : "text-[#080B12]/50 hover:text-[#080B12]"
               )}
               style={{ animationDelay: `${200 + i * 60}ms`, fontFamily: "'Syne',sans-serif", fontWeight: 600 }}
             >
@@ -85,7 +85,7 @@ export function Nav() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setOpen((o) => !o)}
-          className={cn("md:hidden p-2 rounded-lg transition-colors", navDark ? "text-white" : "text-foreground")}
+          className={cn("md:hidden p-2 rounded-lg transition-colors", navDark ? "text-white" : "text-[#080B12]")}
           aria-label="Toggle menu"
         >
           {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -129,7 +129,7 @@ export function Nav() {
 
 function LogoMark({ dark }: { dark: boolean }) {
   return (
-    <span className={cn("grid place-items-center w-8 h-8 rounded-lg transition-all duration-300", dark ? "bg-white text-[#080B12]" : "bg-ink text-ink-foreground")}>
+    <span className={cn("grid place-items-center w-8 h-8 rounded-lg transition-all duration-300", dark ? "bg-white text-[#080B12]" : "bg-[#080B12] text-white")}>
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path d="M2 11L6 5L9 8L12 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
