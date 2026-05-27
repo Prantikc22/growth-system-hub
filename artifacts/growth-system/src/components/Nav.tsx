@@ -28,7 +28,8 @@ export function Nav() {
 
   const isHome  = pathname === "/";
   const dark    = isHome && !scrolled;
-  const navDark = dark || open;
+  // navDark: use white text whenever the nav bg is dark (scrolled/open) OR we're on the dark hero
+  const navDark = dark || scrolled || open;
 
   return (
     <header
@@ -96,7 +97,7 @@ export function Nav() {
         "md:hidden overflow-hidden transition-all duration-300 ease-out",
         open ? "max-h-[520px] opacity-100" : "max-h-0 opacity-0"
       )}>
-        <div className="px-6 py-5 border-t border-white/8 flex flex-col gap-1">
+        <div className="px-6 py-5 border-t border-white/8 flex flex-col gap-1 bg-[#080B12]/98">
           {links.map((l) => (
             <Link
               key={l.href}

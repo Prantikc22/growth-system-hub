@@ -123,17 +123,17 @@ export function Hero() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3 mb-10">
-            <div className="hero-cta-ring rounded-full self-start sm:self-auto">
+            <div className="hero-cta-ring rounded-full w-fit">
               <button
                 onClick={() => smoothScrollTo("#configurator")}
-                className="btn-gradient inline-flex items-center justify-center rounded-full px-7 py-3.5 text-sm relative z-10"
+                className="btn-gradient inline-flex items-center justify-center rounded-full px-8 py-4 text-sm relative z-10"
               >
                 Get Growth Blueprint →
               </button>
             </div>
             <button
               onClick={() => smoothScrollTo("#work")}
-              className="btn-outline-dark inline-flex items-center justify-center rounded-full border border-white/30 text-white px-7 py-3.5 text-sm hover:bg-white/8 hover:border-white/50"
+              className="btn-outline-dark inline-flex items-center justify-center rounded-full border border-white/30 text-white px-8 py-4 text-sm hover:bg-white/8 hover:border-white/50"
             >
               See Case Studies
             </button>
