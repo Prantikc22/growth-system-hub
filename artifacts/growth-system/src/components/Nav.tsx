@@ -31,14 +31,17 @@ export function Nav() {
   // navDark: use white text whenever the nav bg is dark (scrolled/open) OR we're on the dark hero
   const navDark = dark || scrolled || open;
 
+  const hasBg = scrolled || open;
+
   return (
     <header
-      className={cn(
-        "fixed top-0 inset-x-0 z-40 transition-all duration-300",
-        scrolled || open
-          ? "bg-[#080B12]/96 backdrop-blur-xl border-b border-white/8"
-          : "bg-transparent"
-      )}
+      className="fixed top-0 inset-x-0 z-40 transition-all duration-300"
+      style={{
+        backgroundColor: hasBg ? "rgba(8,11,18,0.96)" : "transparent",
+        backdropFilter: hasBg ? "blur(20px)" : undefined,
+        WebkitBackdropFilter: hasBg ? "blur(20px)" : undefined,
+        borderBottom: hasBg ? "1px solid rgba(255,255,255,0.08)" : undefined,
+      }}
     >
       <div className="container-wide flex h-16 md:h-20 items-center justify-between">
         {/* Logo */}
