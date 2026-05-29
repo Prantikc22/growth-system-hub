@@ -119,7 +119,7 @@ export default function Franchise() {
   return (
     <>
       <Nav />
-      <main className="pt-28 md:pt-36 pb-24">
+      <main className="pt-28 md:pt-36">
 
         {/* Hero section */}
         <div className="container-wide">
@@ -160,7 +160,7 @@ export default function Franchise() {
         </div>
 
         {/* Commission structure */}
-        <div className="mt-24 md:mt-32" style={{ background: "linear-gradient(180deg, #080B12 0%, #0a0f1e 100%)" }}>
+        <div style={{ background: "linear-gradient(180deg, #080B12 0%, #0a0f1e 100%)" }}>
           <div className="container-wide py-20 md:py-28">
             <Reveal variant="up" className="text-center max-w-2xl mx-auto mb-14">
               <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs mb-5 text-white/50 uppercase tracking-widest" style={{ fontFamily: "'Syne',sans-serif", fontWeight: 600 }}>

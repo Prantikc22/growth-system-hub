@@ -10,7 +10,7 @@ const BASE_URL = "https://remarqd.com";
 
 const STATIC_ROUTES: Record<string, Pick<SeoMeta, "title" | "description">> = {
   "/": {
-    title: "Remarqd — Your brand. Actually growing.",
+    title: "Remarqd — AI-Powered Marketing & Growth System",
     description:
       "AI-augmented marketing and tech system — ads, content, social, web, automation — delivered as a service, not software.",
   },
