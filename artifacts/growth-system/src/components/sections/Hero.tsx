@@ -66,7 +66,7 @@ export function Hero() {
       <div
         ref={bgRef}
         className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
-        style={{ backgroundImage: "url('/hero-laptop.png')" }}
+        style={{ backgroundImage: "url('/hero-laptop.webp')" }}
       />
 
       {/* Ambient glow orb — parallax depth 2 */}
