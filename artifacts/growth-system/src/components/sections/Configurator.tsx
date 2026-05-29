@@ -17,10 +17,11 @@ import { appendToSheet } from "@/lib/sheets";
 
 const SERVICES: { key: ServiceKey; label: string; tone: string }[] = [
   { key: "performance", label: "Performance Marketing", tone: "bg-[#2563EB]" },
+  { key: "web",         label: "Web, App & AI Tech",   tone: "bg-[#7C3AED]" },
   { key: "social",      label: "Social Media",          tone: "bg-[#A8336E]" },
   { key: "content",     label: "Content Creation",      tone: "bg-[#0F766E]" },
-  { key: "web",         label: "Web & Tech",            tone: "bg-[#7C3AED]" },
   { key: "personal",    label: "Personal Branding",     tone: "bg-[#DC2626]" },
+  { key: "automation",  label: "AI Growth Automation",  tone: "bg-[#F59E0B]" },
 ];
 
 export function Configurator() {
@@ -43,6 +44,7 @@ export function Configurator() {
         if (k === "content" && !s.content) next.content = { items: [] };
         if (k === "web" && !s.web) next.web = { items: [] };
         if (k === "personal" && !s.personal) next.personal = {};
+        if (k === "automation" && !s.automation) next.automation = {};
       }
       return next;
     });
@@ -344,6 +346,30 @@ export function Configurator() {
                           <Label key={o.v} className={cn("rounded-xl border p-4 cursor-pointer", state.personal?.audience === o.v ? "border-foreground bg-secondary" : "border-border")}>
                             <RadioGroupItem value={o.v} className="sr-only" />
                             <div className="font-semibold">{o.l}</div>
+                          </Label>
+                        ))}
+                      </RadioGroup>
+                    </Field>
+                  </Block>
+                )}
+
+                {state.services.includes("automation") && (
+                  <Block title="AI Growth Automation">
+                    <Field label="Which tier fits your needs?">
+                      <RadioGroup
+                        value={state.automation?.tier ?? ""}
+                        onValueChange={(v) => setState((s) => ({ ...s, automation: { tier: v as any } }))}
+                        className="grid gap-3"
+                      >
+                        {[
+                          { v: "starter", l: "Starter", desc: "1–2 automations (lead capture or CRM sync) — ₹8,000/mo" },
+                          { v: "growth",  l: "Growth",  desc: "3–5 flows (lead nurture, reporting, follow-ups) — ₹14,000/mo" },
+                          { v: "full",    l: "Full Engine", desc: "Complete automation stack (all growth workflows) — ₹22,000/mo" },
+                        ].map((o) => (
+                          <Label key={o.v} className={cn("rounded-xl border p-4 cursor-pointer", state.automation?.tier === o.v ? "border-foreground bg-secondary" : "border-border")}>
+                            <RadioGroupItem value={o.v} className="sr-only" />
+                            <div className="font-semibold">{o.l}</div>
+                            <div className="text-sm text-muted-foreground mt-0.5">{o.desc}</div>
                           </Label>
                         ))}
                       </RadioGroup>

@@ -92,7 +92,7 @@ export function Hero() {
             style={{ fontFamily: "'Syne', sans-serif", fontSize: "11px", fontWeight: 600, letterSpacing: "0.06em", color: "rgba(255,255,255,0.6)", textTransform: "uppercase" }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Not an agency. A growth system.
+            Not an agency. An AI-powered growth system.
           </div>
 
           {/* Headline */}
@@ -117,7 +117,7 @@ export function Hero() {
 
           {/* Subtitle */}
           <p className="text-white/55 text-base md:text-lg leading-relaxed mb-8 max-w-sm font-sans">
-            AI-powered strategy, performance ads, social, content and tech —
+            AI-powered strategy, tech, performance ads, social and content —
             in one place, at transparent pricing, with a team that actually shows up.
           </p>
 

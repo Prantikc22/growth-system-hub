@@ -2,7 +2,7 @@
 // PRICING ENGINE — All numbers in INR. Estimates only.
 // ============================================================
 
-export type ServiceKey = "performance" | "social" | "content" | "web" | "personal";
+export type ServiceKey = "performance" | "social" | "content" | "web" | "personal" | "automation";
 
 export type ConfiguratorState = {
   services: ServiceKey[];
@@ -24,6 +24,9 @@ export type ConfiguratorState = {
   };
   personal?: {
     audience?: "founder" | "creator" | "both";
+  };
+  automation?: {
+    tier?: "starter" | "growth" | "full";
   };
 };
 
@@ -122,6 +125,17 @@ export function estimate(state: ConfiguratorState): PriceEstimate {
       a === "creator" ? "Personal Brand — Creator" :
       "Personal Brand — Founder + Creator";
     items.push({ label, amount, kind: "monthly" });
+  }
+
+  // ── AI Growth Automation ─────────────────────────────────
+  if (state.services.includes("automation") && state.automation?.tier) {
+    const t = state.automation.tier;
+    const map: Record<string, { label: string; amount: number }> = {
+      starter: { label: "AI Automation — Starter", amount: 8000 },
+      growth:  { label: "AI Automation — Growth",  amount: 14000 },
+      full:    { label: "AI Automation — Full Engine", amount: 22000 },
+    };
+    if (map[t]) items.push({ ...map[t], kind: "monthly" });
   }
 
   const monthly = items.filter((i) => i.kind === "monthly").reduce((s, i) => s + i.amount, 0);

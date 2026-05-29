@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { useInView } from "@/hooks/use-in-view";
 import { CountUp } from "@/components/CountUp";
 import { cn } from "@/lib/utils";
 
-const RESULTS = [
+const MARKETING_RESULTS = [
   {
     value: 3,
     suffix: "x",
@@ -37,8 +38,45 @@ const RESULTS = [
   },
 ];
 
+const TECH_RESULTS = [
+  {
+    value: 10,
+    suffix: "x",
+    label: "Faster Build & Launch",
+    desc: "AI-assisted development cuts website and app delivery from months to weeks.",
+    color: "#fcd34d",
+    bg: "rgba(245,158,11,0.08)",
+  },
+  {
+    value: 60,
+    suffix: "%",
+    label: "Lower Ops Cost",
+    desc: "Automating reporting, lead nurture and follow-ups frees your team for real work.",
+    color: "#6ee7b7",
+    bg: "rgba(15,118,110,0.08)",
+  },
+  {
+    value: 24,
+    suffix: "/7",
+    label: "Lead Coverage",
+    desc: "AI chatbots handle enquiries, qualify leads and book calls without added headcount.",
+    color: "#93c5fd",
+    bg: "rgba(37,99,235,0.08)",
+  },
+  {
+    value: 2,
+    suffix: "x",
+    label: "Better Lead Quality",
+    desc: "CRM integrations and AI scoring means sales teams only talk to ready buyers.",
+    color: "#c4b5fd",
+    bg: "rgba(124,58,237,0.08)",
+  },
+];
+
 export function ProvenResults() {
   const { ref, inView } = useInView<HTMLDivElement>();
+  const [tab, setTab] = useState<"marketing" | "tech">("marketing");
+  const results = tab === "marketing" ? MARKETING_RESULTS : TECH_RESULTS;
 
   return (
     <section
@@ -47,12 +85,12 @@ export function ProvenResults() {
     >
       <div className="container-wide">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <div className="text-center max-w-2xl mx-auto mb-10">
           <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs mb-5 text-white/50 uppercase tracking-widest" style={{ fontFamily: "'Syne',sans-serif", fontWeight: 600 }}>
             Proven results
           </p>
           <h2 className="font-serif text-[clamp(2rem,4.5vw,3.5rem)] font-normal text-white leading-[1.05]">
-            What AI-enabled marketing<br />
+            What AI-enabled marketing and tech<br />
             <em className="italic" style={{
               background: "linear-gradient(90deg, #93c5fd 0%, #c4b5fd 60%, #f9a8d4 100%)",
               WebkitBackgroundClip: "text",
@@ -64,11 +102,32 @@ export function ProvenResults() {
           </h2>
         </div>
 
+        {/* Tabs */}
+        <div className="flex justify-center mb-10">
+          <div className="inline-flex rounded-full border border-white/12 bg-white/5 p-1 gap-1">
+            {(["marketing", "tech"] as const).map((t) => (
+              <button
+                key={t}
+                onClick={() => setTab(t)}
+                className={cn(
+                  "rounded-full px-5 py-2 text-sm font-semibold transition-all duration-200",
+                  tab === t
+                    ? "bg-white text-[#080B12]"
+                    : "text-white/50 hover:text-white/80"
+                )}
+                style={{ fontFamily: "'Syne',sans-serif" }}
+              >
+                {t === "marketing" ? "Marketing" : "Tech & Automation"}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Big number row */}
         <div ref={ref} className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/6 rounded-3xl overflow-hidden border border-white/8 mb-12">
-          {RESULTS.map((r, i) => (
+          {results.map((r, i) => (
             <div
-              key={i}
+              key={`${tab}-${i}`}
               className={cn("relative p-8 md:p-10 flex flex-col gap-4 group", "iv-reveal", inView && "is-in")}
               style={{
                 background: "#080B12",

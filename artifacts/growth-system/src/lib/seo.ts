@@ -12,7 +12,7 @@ const STATIC_ROUTES: Record<string, Pick<SeoMeta, "title" | "description">> = {
   "/": {
     title: "Remarqd — Your brand. Actually growing.",
     description:
-      "Not an agency. A productized brand growth system. Performance marketing, social, content, web/app, and personal branding — one team, one price, real outcomes.",
+      "AI-augmented marketing and tech system — ads, content, social, web, automation — delivered as a service, not software.",
   },
   "/work": {
     title: "Case Studies — Remarqd",
