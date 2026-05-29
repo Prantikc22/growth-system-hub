@@ -2,6 +2,8 @@
   "installCommand": "pnpm install",
   "buildCommand": "pnpm --filter @workspace/growth-system run build",
   "outputDirectory": "artifacts/growth-system/dist/public",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
